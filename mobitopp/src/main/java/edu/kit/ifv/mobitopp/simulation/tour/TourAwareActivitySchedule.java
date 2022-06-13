@@ -17,6 +17,8 @@ public interface TourAwareActivitySchedule
 	boolean isStartOfTour(ActivityIfc activity);
 	
 	Tour correspondingTour(ActivityIfc activity);
+
+	Tour tourOnward(ActivityIfc activity);
 	
 	Tour firstTour();
 	
