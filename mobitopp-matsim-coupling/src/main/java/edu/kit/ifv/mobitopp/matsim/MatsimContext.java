@@ -20,6 +20,13 @@ public class MatsimContext extends SimulationContextDecorator implements Simulat
 		currentImpedance = baseContext.impedance();
 	}
 
+	public MatsimContext(SimulationContext baseContext, Network network) {
+		super(baseContext);
+		this.network = network;
+		this.roadNetwork = null;
+		currentImpedance = baseContext.impedance();
+	}
+
 	public VisumNetwork network() {
 		return network.visumNetwork;
 	}

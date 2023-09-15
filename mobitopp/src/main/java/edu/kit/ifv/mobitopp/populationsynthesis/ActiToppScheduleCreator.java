@@ -15,12 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import edu.kit.ifv.mobitopp.actitopp.ActitoppPerson;
-import edu.kit.ifv.mobitopp.actitopp.Configuration;
-import edu.kit.ifv.mobitopp.actitopp.HActivity;
-import edu.kit.ifv.mobitopp.actitopp.InvalidPatternException;
-import edu.kit.ifv.mobitopp.actitopp.ModelFileBase;
-import edu.kit.ifv.mobitopp.actitopp.RNGHelper;
+import edu.kit.ifv.mobitopp.actitopp.*;
 import edu.kit.ifv.mobitopp.data.PatternActivity;
 import edu.kit.ifv.mobitopp.data.PatternActivityWeek;
 import edu.kit.ifv.mobitopp.result.CsvBuilder;
@@ -59,6 +54,8 @@ public class ActiToppScheduleCreator implements ActivityScheduleCreator, Activit
     public static HashMap<Number, List<HActivity>> schedulemap = new HashMap<Number, List<HActivity>>();
     private int globalretries = 0;
 
+    private final PatternFixer fixer;
+
     /**
      * Konstruktor
      *
@@ -68,11 +65,14 @@ public class ActiToppScheduleCreator implements ActivityScheduleCreator, Activit
         categories = new ActiToppCategories();
         fileBase = new ModelFileBase();
         randomgenerator = new RNGHelper(seed);
+        fixer = new TourPatternFixer();
+
     }
 
     @Override
     public void assignActivitySchedule(HouseholdForSetup toHousehold) {
     }
+
 
     /**
      * Methode zur Erstellung des Wochen-Aktivitätenplans
@@ -87,66 +87,59 @@ public class ActiToppScheduleCreator implements ActivityScheduleCreator, Activit
         // Initialisierungen
         PatternActivityWeek patternActivityWeek = new PatternActivityWeek();
 
-        // Durchführung nur für x% der Bevölkerung
-        if ((personIndex % (100 / Configuration.percent_bevsynthese)) == 0) {
-            //Erzeuge neue Person
-            ActitoppPerson personOfActiTopp = new ActitoppPerson(
-                    personIndex,
-                    householdOfPanelData.numberOfNotReportingChildren(),
-                    householdOfPanelData.numberOfMinors(),
-                    aPersonOfPanelData.age(),
-                    aPersonOfPanelData.getEmploymentTypeAsInt(),
-                    aPersonOfPanelData.getGenderTypeAsInt(),
-                    household.homeZone().getAreaType().getTypeAsInt(),
-                    householdOfPanelData.numberOfCars()
-            );
+        // Implementation only for x% of the population. But here we implement everyone.
+//        if (personIndex == 0) {
+        //Create new person
+        ActitoppPerson personOfActiTopp = new ActitoppPerson(
+                personIndex,
+                householdOfPanelData.numberOfNotReportingChildren(),
+                householdOfPanelData.numberOfMinors(),
+                aPersonOfPanelData.age(),
+                aPersonOfPanelData.getEmploymentTypeAsInt(),
+                aPersonOfPanelData.getGenderTypeAsInt(),
+                household.homeZone().getAreaType().getTypeAsInt(),
+                householdOfPanelData.numberOfCars()
+        );
 
-            // DEBUG purpose
-            // log.debug(personOfActiTopp);
+        // DEBUG purpose
+        // log.debug(personOfActiTopp);
 
-            // Erzeuge solange Schedules, bis kein InvalidPatternException mehr vorliegt
-            boolean scheduleOK = false;
-            while (!scheduleOK) {
-                try {
-                    // Erzeuge Wochenaktivitätenplan
-                    personOfActiTopp.generateSchedule(fileBase, randomgenerator);
+        // Generate schedules until there are no more InvalidPatternExceptions
+        boolean scheduleOK = false;
+        while (!scheduleOK) {
+            try {
+                // Generate weekly activity schedule
+                personOfActiTopp.generateSchedule(fileBase, randomgenerator);
 
-                    // Konvertiere alle Aktivitäten in mobiTopp-Datentypen
-                    for (HActivity act : personOfActiTopp.getWeekPattern().getAllActivities()) {
-                        patternActivityWeek.addPatternActivity(convertActiToppTomobiToppActivityType(act));
-                    }
-
-                    scheduleOK = true;
-                } catch (InvalidPatternException e) {
-                    warn(e, log);
-                    globalretries++;
-
-                    //  System.err.println(e.getReason());
-                    //  System.err.println("person involved: " + this.personIndex);
-                    //  System.err.println("RetryNumber : " + retryIndex);
+                // Convert all activities to mobiTopp datatypes
+                for (HActivity act : personOfActiTopp.getWeekPattern().getAllActivities()) {
+                    patternActivityWeek.addPatternActivity(convertActiToppTomobiToppActivityType(act));
                 }
+
+                scheduleOK = true;
+            } catch (InvalidPatternException e) {
+                warn(e, log);
+                globalretries++;
             }
-
-            // Füge die Act und die Person für den Export den Maps hinzu
-            schedulemap.put(personIndex, personOfActiTopp.getWeekPattern().getAllActivities());
-            personmap.put(personIndex, personOfActiTopp);
-
-
-            activities.add(patternActivityWeek);
         }
+
+        // Füge die Act und die Person für den Export den Maps hinzu
+        schedulemap.put(personIndex, personOfActiTopp.getWeekPattern().getAllActivities());
+        personmap.put(personIndex, personOfActiTopp);
+        activities.add(patternActivityWeek);
         personIndex++;
 
         // Statusinformationen und Log4J-Export
-        if (personIndex % Configuration.anzexportds == 0) {
-            log.info("Doing person Nr... " + personIndex);
-            int prozent = (int) Math.round(100 * ((double) globalretries / (double) Configuration.anzexportds));
-            log.error("Anzahl Retries: " + globalretries + " (~ " + prozent + "% der Personen)");
-            globalretries = 0;
+//        if (personIndex % Configuration.anzexportds == 0) {
+//            log.info("Doing person Nr... " + personIndex);
+//            int prozent = (int) Math.round(100 * ((double) globalretries / (double) Configuration.anzexportds));
+//            log.error("Anzahl Retries: " + globalretries + " (~ " + prozent + "% der Personen)");
+//            globalretries = 0;
+//
+//            exportData();
+//        }
 
-            exportData();
-        }
-
-        return patternActivityWeek;
+        return fixer.ensureIsTour(patternActivityWeek);
     }
 
     /**
@@ -162,7 +155,8 @@ public class ActiToppScheduleCreator implements ActivityScheduleCreator, Activit
         // CSV-Dateien Activities
         //writeCSVActData("Rohdaten_Wege", until);
         // Log4J-Dateien loggen
-        writeLog4JData();
+
+        //writeLog4JData();
 
         personmap.clear();
         schedulemap.clear();
@@ -194,192 +188,192 @@ public class ActiToppScheduleCreator implements ActivityScheduleCreator, Activit
      * @throws IOException
      */
     @SuppressWarnings("unused")
-    private void writeCSVPersonData(String partition, int untilindex) throws IOException {
-        // Erstelle die Datei
-        FileWriter writer = new FileWriter("log/populationsynthesis/csv/" + partition + ".csv");
-
-        // Header
-        writer.append("HHID;Jahr;PersNr;P0_10;kinder_u18;Alter;BERUF;SEX;Raumtyp_mobitopp;Pkwhh");
-        writer.append('\n');
-        writer.flush();
-
-        // Füge alle Personendaten der Datei hinzu
-        for (int i = (untilindex - Configuration.anzexportds); i < untilindex; i++) {
-            ActitoppPerson person = personmap.get(i);
-
-            //Output	ID, Jahr, PersNr, P0_10, kinder_u18, Alter, BERUF, SEX, Raumtyp, Pkwhh
-
-
-            // ID
-            writer.append(i + ";");
-            // Jahr
-            writer.append("2016" + ";");
-            // PersNr
-            writer.append("1" + ";");
-            // P0_10
-            writer.append(person.getChildren0_10() + ";");
-            // kinder_u18
-            writer.append(person.getChildren_u18() + ";");
-            // Alter
-            writer.append(person.getAge() + ";");
-            // Beruf
-            writer.append(person.getEmployment() + ";");
-            // Sex
-            writer.append(person.getGender() + ";");
-            // Raumtyp
-            writer.append(person.getAreatype() + ";");
-            // PKWHH
-            writer.append(person.getNumberofcarsinhousehold() + "");
-
-            // Abschluss
-            writer.append('\n');
-
-            writer.flush();
-        }
-        writer.close();
-        String Uhrzeit = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new java.util.Date());
-        log.info("CSV Data Person geschrieben " + Uhrzeit);
-    }
-
-    /**
-     * Schreibe CSV-Daten für Debug
-     *
-     * @param partition
-     * @param untilindex
-     * @throws IOException
-     */
-    @SuppressWarnings("unused")
-    private void writeCSVActData(String partition, int untilindex) throws IOException {
-        // Erstelle die Datei
-        FileWriter writer = new FileWriter("log/populationsynthesis/csv/" + partition + ".csv");
-
-        // Header
-        writer.append("HHID;Jahr;PersNr;BERTAG;WOTAG;abzeit_woche;anzeit_woche;Dauer;zweck");
-        writer.append('\n');
-        writer.flush();
-
-        // Durlaufe alle ActivityLists
-        for (int i = (untilindex - Configuration.anzexportds); i < untilindex; i++) {
-            List<HActivity> actschedule = schedulemap.get(i);
-
-            // Füge alle Aktivitäten der Datei hinzu
-            for (HActivity act : actschedule) {
-                if (act.getEstimatedTripTime() != 0) {
-                    // ID
-                    writer.append(i + ";");
-                    // Jahr
-                    writer.append("2016" + ";");
-                    // PersNr
-                    writer.append("1" + ";");
-                    // BERTAG
-                    writer.append(act.getWeekDay() + ";");
-                    // WOTAG
-                    writer.append(act.getWeekDay() + ";");
-                    // abzeit_woche
-                    writer.append(act.getTripStartTimeWeekContext() + ";");
-                    // anzeit_woche
-                    writer.append(act.getStartTimeWeekContext() + ";");
-                    // Dauer
-                    writer.append(act.getEstimatedTripTime() + ";");
-                    // Zweck
-                    writer.append(act.getMobiToppActType() + "");
-
-                    // Abschluss
-                    writer.append('\n');
-                    writer.flush();
-                }
-            }
-        }
-        writer.close();
-        String Uhrzeit = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new java.util.Date());
-        log.info("CSV Data Act geschrieben " + Uhrzeit);
-    }
-
-    /**
-     * Schreibt die actiTopp Ergebnisse in die Log-Dateien
-     */
-    private void writeLog4JData() {
-        try (ResultWriter resultWriter = ResultWriter.createDefaultWriter()) {
-            logElementsTo(resultWriter);
-        }
-        String Uhrzeit = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new java.util.Date());
-        log.info("Log4J Data geschrieben " + Uhrzeit);
-    }
-
-
-    private void logElementsTo(ResultWriter results) {
-        for (Entry<Number, ActitoppPerson> e : personmap.entrySet()) {
-            ActitoppPerson person = personmap.get(e.getKey());
-            List<HActivity> actschedule = schedulemap.get(e.getKey());
-
-            //////////////////
-            //	Personen
-            //////////////////
-
-            //Output	ID, Jahr, PersNr, P0_10, kinder_u18, Alter, BERUF, SEX, Raumtyp, Pkwhh
-
-            CsvBuilder log_person = new CsvBuilder();
-            // PersID
-            log_person.append(person.getPersIndex());
-            // Jahr
-            log_person.append(new GregorianCalendar().get(Calendar.YEAR));
-            // PersNr
-            log_person.append("1");
-            // P0_10
-            log_person.append(person.getChildren0_10());
-            // kinder_u18
-            log_person.append(person.getChildren_u18());
-            // Alter
-            log_person.append(person.getAge());
-            // Beruf
-            log_person.append(person.getEmployment());
-            // Sex
-            log_person.append(person.getGender());
-            // Raumtyp
-            log_person.append(person.getAreatype());
-            // PKWHH
-            log_person.append(person.getNumberofcarsinhousehold());
-
-
-            // Schreibe die log4j Datei
-            results.write(categories.person, log_person.toString());
-
-            //////////////////
-            //	Wege
-            //////////////////
-
-            for (HActivity act : actschedule) {
-                if (act.getEstimatedTripTime() != 0) {
-                    CsvBuilder log_trip = new CsvBuilder();
-
-                    // PersID
-                    log_trip.append(person.getPersIndex());
-                    // Jahr
-                    log_trip.append(new GregorianCalendar().get(Calendar.YEAR));
-                    // PersNr
-                    log_trip.append("1");
-                    // BERTAG
-                    log_trip.append(act.getWeekDay());
-                    // WOTAG
-                    log_trip.append(act.getWeekDay());
-                    // abzeit_woche
-                    log_trip.append(act.getTripStartTimeWeekContext());
-                    // anzeit_woche
-                    log_trip.append(act.getStartTimeWeekContext());
-                    // Dauer
-                    log_trip.append(act.getEstimatedTripTime());
-                    // Zweck
-                    log_trip.append(act.getMobiToppActType());/*+ ";";
-      		// Aktdauer
-      		log_trip.append(act.getDuration() + "";
-      		*/
-
-                    // Schreibe die log4j Datei
-                    results.write(categories.trip, log_trip.toString());
-                }
-            }
-        }
-    }
+//    private void writeCSVPersonData(String partition, int untilindex) throws IOException {
+//        // Erstelle die Datei
+//        FileWriter writer = new FileWriter("log/populationsynthesis/csv/" + partition + ".csv");
+//
+//        // Header
+//        writer.append("HHID;Jahr;PersNr;P0_10;kinder_u18;Alter;BERUF;SEX;Raumtyp_mobitopp;Pkwhh");
+//        writer.append('\n');
+//        writer.flush();
+//
+//        // Füge alle Personendaten der Datei hinzu
+//        for (int i = (untilindex - Configuration.anzexportds); i < untilindex; i++) {
+//            ActitoppPerson person = personmap.get(i);
+//
+//            //Output	ID, Jahr, PersNr, P0_10, kinder_u18, Alter, BERUF, SEX, Raumtyp, Pkwhh
+//
+//
+//            // ID
+//            writer.append(i + ";");
+//            // Jahr
+//            writer.append("2016" + ";");
+//            // PersNr
+//            writer.append("1" + ";");
+//            // P0_10
+//            writer.append(person.getChildren0_10() + ";");
+//            // kinder_u18
+//            writer.append(person.getChildren_u18() + ";");
+//            // Alter
+//            writer.append(person.getAge() + ";");
+//            // Beruf
+//            writer.append(person.getEmployment() + ";");
+//            // Sex
+//            writer.append(person.getGender() + ";");
+//            // Raumtyp
+//            writer.append(person.getAreatype() + ";");
+//            // PKWHH
+//            writer.append(person.getNumberofcarsinhousehold() + "");
+//
+//            // Abschluss
+//            writer.append('\n');
+//
+//            writer.flush();
+//        }
+//        writer.close();
+//        String Uhrzeit = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new java.util.Date());
+//        log.info("CSV Data Person geschrieben " + Uhrzeit);
+//    }
+//
+//    /**
+//     * Schreibe CSV-Daten für Debug
+//     *
+//     * @param partition
+//     * @param untilindex
+//     * @throws IOException
+//     */
+//    @SuppressWarnings("unused")
+//    private void writeCSVActData(String partition, int untilindex) throws IOException {
+//        // Erstelle die Datei
+//        FileWriter writer = new FileWriter("log/populationsynthesis/csv/" + partition + ".csv");
+//
+//        // Header
+//        writer.append("HHID;Jahr;PersNr;BERTAG;WOTAG;abzeit_woche;anzeit_woche;Dauer;zweck");
+//        writer.append('\n');
+//        writer.flush();
+//
+//        // Durlaufe alle ActivityLists
+//        for (int i = (untilindex - Configuration.NUMBER_OF_ACT_DURATION_CLASSES); i < untilindex; i++) {
+//            List<HActivity> actschedule = schedulemap.get(i);
+//
+//            // Füge alle Aktivitäten der Datei hinzu
+//            for (HActivity act : actschedule) {
+//                if (act.getEstimatedTripTime() != 0) {
+//                    // ID
+//                    writer.append(i + ";");
+//                    // Jahr
+//                    writer.append("2016" + ";");
+//                    // PersNr
+//                    writer.append("1" + ";");
+//                    // BERTAG
+//                    writer.append(act.getWeekDay() + ";");
+//                    // WOTAG
+//                    writer.append(act.getWeekDay() + ";");
+//                    // abzeit_woche
+//                    writer.append(act.getTripStartTimeWeekContext() + ";");
+//                    // anzeit_woche
+//                    writer.append(act.getStartTimeWeekContext() + ";");
+//                    // Dauer
+//                    writer.append(act.getEstimatedTripTime() + ";");
+//                    // Zweck
+//                    writer.append(act.getMobiToppActType() + "");
+//
+//                    // Abschluss
+//                    writer.append('\n');
+//                    writer.flush();
+//                }
+//            }
+//        }
+//        writer.close();
+//        String Uhrzeit = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new java.util.Date());
+//        log.info("CSV Data Act geschrieben " + Uhrzeit);
+//    }
+//
+//    /**
+//     * Schreibt die actiTopp Ergebnisse in die Log-Dateien
+//     */
+//    private void writeLog4JData() {
+//        try (ResultWriter resultWriter = ResultWriter.createDefaultWriter()) {
+//            logElementsTo(resultWriter);
+//        }
+//        String Uhrzeit = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new java.util.Date());
+//        log.info("Log4J Data geschrieben " + Uhrzeit);
+//    }
+//
+//
+//    private void logElementsTo(ResultWriter results) {
+//        for (Entry<Number, ActitoppPerson> e : personmap.entrySet()) {
+//            ActitoppPerson person = personmap.get(e.getKey());
+//            List<HActivity> actschedule = schedulemap.get(e.getKey());
+//
+//            //////////////////
+//            //	Personen
+//            //////////////////
+//
+//            //Output	ID, Jahr, PersNr, P0_10, kinder_u18, Alter, BERUF, SEX, Raumtyp, Pkwhh
+//
+//            CsvBuilder log_person = new CsvBuilder();
+//            // PersID
+//            log_person.append(person.getPersIndex());
+//            // Jahr
+//            log_person.append(new GregorianCalendar().get(Calendar.YEAR));
+//            // PersNr
+//            log_person.append("1");
+//            // P0_10
+//            log_person.append(person.getChildren0_10());
+//            // kinder_u18
+//            log_person.append(person.getChildren_u18());
+//            // Alter
+//            log_person.append(person.getAge());
+//            // Beruf
+//            log_person.append(person.getEmployment());
+//            // Sex
+//            log_person.append(person.getGender());
+//            // Raumtyp
+//            log_person.append(person.getAreatype());
+//            // PKWHH
+//            log_person.append(person.getNumberofcarsinhousehold());
+//
+//
+//            // Schreibe die log4j Datei
+//            results.write(categories.person, log_person.toString());
+//
+//            //////////////////
+//            //	Wege
+//            //////////////////
+//
+//            for (HActivity act : actschedule) {
+//                if (act.getEstimatedTripTime() != 0) {
+//                    CsvBuilder log_trip = new CsvBuilder();
+//
+//                    // PersID
+//                    log_trip.append(person.getPersIndex());
+//                    // Jahr
+//                    log_trip.append(new GregorianCalendar().get(Calendar.YEAR));
+//                    // PersNr
+//                    log_trip.append("1");
+//                    // BERTAG
+//                    log_trip.append(act.getWeekDay());
+//                    // WOTAG
+//                    log_trip.append(act.getWeekDay());
+//                    // abzeit_woche
+//                    log_trip.append(act.getTripStartTimeWeekContext());
+//                    // anzeit_woche
+//                    log_trip.append(act.getStartTimeWeekContext());
+//                    // Dauer
+//                    log_trip.append(act.getEstimatedTripTime());
+//                    // Zweck
+//                    log_trip.append(act.getMobiToppActType());/*+ ";";
+//      		// Aktdauer
+//      		log_trip.append(act.getDuration() + "";
+//      		*/
+//
+//                    // Schreibe die log4j Datei
+//                    results.write(categories.trip, log_trip.toString());
+//                }
+//            }
+//        }
+//    }
 
     /**
      * Methode konvertiert die Aktivität in den mobiTopp Simulation Aktivitätentyp
@@ -387,8 +381,12 @@ public class ActiToppScheduleCreator implements ActivityScheduleCreator, Activit
      * @return
      */
     public PatternActivity convertActiToppTomobiToppActivityType(HActivity act) {
-        DayOfWeek wd = DayOfWeek.fromDay(act.getIndexDay());
-        PatternActivity activity = new PatternActivity(ActivityType.getTypeFromInt(act.getMobiToppActType()), wd, act.getEstimatedTripTime(), act.getStartTime(), act.getDuration());
+        DayOfWeek wd = DayOfWeek.fromDay(act.getDayIndex());
+        int estimatedTripTimeBeforeActivity = -1;
+        if (act.tripBeforeActivityisScheduled()) {
+            estimatedTripTimeBeforeActivity = act.getEstimatedTripTimeBeforeActivity();
+        }
+        PatternActivity activity = new PatternActivity(ActivityType.getTypeFromInt(act.getActivityType().getCode()), wd, estimatedTripTimeBeforeActivity, act.getStartTime(), act.getDuration());
         return activity;
     }
 

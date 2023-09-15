@@ -1,0 +1,119 @@
+costMatrices:
+  car:
+    at:
+      weekdays:
+        between:
+          0 to 23: cost-car.mtx
+      saturday:
+        between:
+          0 to 23: cost-car.mtx
+      sunday:
+        between:
+          0 to 23: cost-car.mtx
+  constant:
+    at:
+      weekdays:
+        between:
+          0 to 23: cost-all-zero.mtx
+      saturday:
+        between:
+          0 to 23: cost-all-zero.mtx
+      sunday:
+        between:
+          0 to 23: cost-all-zero.mtx
+  parkingstress:
+    at:
+      weekdays:
+        between:
+          0 to 23: cost-all-zero.mtx
+      saturday:
+        between:
+          0 to 23: cost-all-zero.mtx
+      sunday:
+        between:
+          0 to 23: cost-all-zero.mtx
+  distance:
+    at:
+      weekdays:
+        between:
+          0 to 23: cost-distance.mtx
+      saturday:
+        between:
+          0 to 23: cost-distance.mtx
+      sunday:
+        between:
+          0 to 23: cost-distance.mtx
+  parking:
+    at:
+      weekdays:
+        between:
+          0 to 23: cost-all-zero.mtx
+      saturday:
+        between:
+          0 to 23: cost-all-zero.mtx
+      sunday:
+        between:
+          0 to 23: cost-all-zero.mtx
+  publictransport:
+    at:
+      weekdays:
+        between:
+          0 to 23: cost-all-zero.mtx
+      saturday:
+        between:
+          0 to 23: cost-all-zero.mtx
+      sunday:
+        between:
+          0 to 23: cost-all-zero.mtx
+fixedDistributionMatrices:
+  EDUCATION_PRIMARY: distribution-edu.mtx
+  EDUCATION_TERTIARY: cost-all-zero.mtx
+  EDUCATION_OCCUP: cost-all-zero.mtx
+  EDUCATION_SECONDARY: cost-all-zero.mtx
+  EDUCATION: cost-all-zero.mtx
+  WORK: distribution-work.mtx
+travelTimeMatrices:
+  pedestrian:
+    at:
+      weekdays:
+        between:
+          0 to 23: traveltime-ped.mtx
+      saturday:
+        between:
+          0 to 23: traveltime-ped.mtx
+      sunday:
+        between:
+          0 to 23: traveltime-ped.mtx
+  car:
+    at:
+      weekdays:
+        between:
+          0 to 23: traveltime-car.mtx
+      saturday:
+        between:
+          0 to 23: traveltime-car.mtx
+      sunday:
+        between:
+          0 to 23: traveltime-car.mtx
+  publictransport:
+    at:
+      weekdays:
+        between:
+          0 to 23: traveltime-car.mtx
+      saturday:
+        between:
+          0 to 23: traveltime-car.mtx
+      sunday:
+        between:
+          0 to 23: traveltime-car.mtx
+  bike:
+    at:
+      weekdays:
+        between:
+          0 to 23: traveltime-bike.mtx
+      saturday:
+        between:
+          0 to 23: traveltime-bike.mtx
+      sunday:
+        between:
+          0 to 23: traveltime-bike.mtx

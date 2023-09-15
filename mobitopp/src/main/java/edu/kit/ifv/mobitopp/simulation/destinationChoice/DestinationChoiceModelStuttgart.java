@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeMap;
+import java.lang.Math;
 
 import edu.kit.ifv.mobitopp.data.Zone;
 import edu.kit.ifv.mobitopp.data.ZoneClassificationType;
@@ -93,10 +94,18 @@ public class DestinationChoiceModelStuttgart
 
         float opportunity_coeff = this.getParameterOpportunity(activityType);
 
+        //Change here for AV experiment.
+        if (mode == StandardMode.CAR || mode == StandardMode.PASSENGER) {
+            cost_coeff = cost_coeff * 0.85f;
+            if (mode == StandardMode.CAR) {
+                time_coeff = time_coeff * 0.85f;
+            }
+        }
 
+        //original is with time_next + time_pole; cost_next + cost_pole
         double utility = opportunity_coeff * opportunity //+ opportunity_coeff * opportunityAdjustment
                 + time_coeff * (time_next + time_pole)
-                + cost_coeff * 1000 / income * (cost_next + cost_pole)
+                + cost_coeff * 1000  * (cost_next + cost_pole) / (income * 4)
                 + constant;
         return utility;
     }
@@ -125,31 +134,46 @@ public class DestinationChoiceModelStuttgart
 
             float time_next = this.impedance.getTravelTime(origin, destination, mode, date);
             float cost_next = (mode == StandardMode.PUBLICTRANSPORT && commuterTicket ? 0.0f
-                    : this.impedance.getTravelCost(origin, destination, mode, date)
-            );
+                    : this.impedance.getTravelCost(origin, destination, mode, date));
                     //+ calculateParkingCost(mode, destination, date, nextActivity.duration());
 
             float time_pole = this.impedance.getTravelTime(destination, nextPoleOid, mode, date);
-            float cost_pole = mode == StandardMode.PUBLICTRANSPORT && commuterTicket ? 0.0f
-                    : this.impedance.getTravelCost(destination, nextPoleOid, mode, date);
+            float cost_pole = (mode == StandardMode.PUBLICTRANSPORT && commuterTicket ? 0.0f
+                    : this.impedance.getTravelCost(destination, nextPoleOid, mode, date));
 
-            float constant = this.impedance.getConstant(origin, destination, date);
+            //original just read the constant from matrix.
+//          float constant = this.impedance.getConstant(origin, destination, date);
+
+            //this is to add disutility for passenger mode.
+            float constant = (mode == StandardMode.PASSENGER ? -0.5f
+                    : this.impedance.getConstant(origin, destination, date));
 
             float income = person.getIncome();
 
+            //original with next pole location
             float cost = 2.0f * ((1.0f - this.poleSensitivity) * cost_next + this.poleSensitivity * cost_pole);
             float time = 2.0f * ((1.0f - this.poleSensitivity) * time_next + this.poleSensitivity * time_pole);
 
+            //this is without pole location
+//            float cost = cost_next;
+//            float time = time_next;
 
-            double sum =
-                    +time_coeff * time
-                            + cost_coeff * 1000 / income * cost
+            if (mode == StandardMode.CAR || mode == StandardMode.PASSENGER) {
+//                cost_coeff = cost_coeff * 0.85f;
+                if (mode == StandardMode.CAR) {
+                    time_coeff = time_coeff * 0.85f;
+                }
+            }
+
+            double sum = +time_coeff * time
+                            + cost_coeff * cost * 1000 / (income * 4)
                             + constant;
 
             impedances.put(sum, mode);
         }
 
-        Double minimum = impedances.firstKey();
+//        Double minimum = impedances.firstKey();
+          Double minimum = impedances.lastKey();
 
         return impedances.get(minimum);
     }
@@ -254,8 +278,8 @@ public class DestinationChoiceModelStuttgart
 
     protected Collection<Mode> getModes(Set<Mode> choiceSetForModes) {
         Collection<Mode> c = new LinkedHashSet<Mode>();
-        c.add(StandardMode.PEDESTRIAN);
-        c.add(StandardMode.PUBLICTRANSPORT);
+//        c.add(StandardMode.PEDESTRIAN);
+//        c.add(StandardMode.PUBLICTRANSPORT);
         c.addAll(choiceSetForModes);
         return c;
     }

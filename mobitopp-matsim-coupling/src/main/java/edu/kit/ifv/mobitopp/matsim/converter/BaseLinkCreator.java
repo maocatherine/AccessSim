@@ -35,11 +35,12 @@ public class BaseLinkCreator {
 		Link link = network.getFactory().createLink(Id.createLinkId(id), fromNode, toNode);
 
 		link.setLength(1000f * length);
-		link.setCapacity(capacity / 10.0f);
+		link.setCapacity(capacity);
 		link.setFreespeed(freespeed / 3.6f);
 		link.setNumberOfLanes(lanes);
 
 		link.setAllowedModes(allowedModes);
+		link.getAttributes().putAttribute("hbefa_road_type", "URB/Local/50");
 
 		network.addLink(link);
 

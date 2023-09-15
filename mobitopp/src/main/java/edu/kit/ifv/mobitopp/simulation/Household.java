@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
+import edu.kit.ifv.mobitopp.data.Zone;
 import edu.kit.ifv.mobitopp.data.person.PersonId;
 import edu.kit.ifv.mobitopp.simulation.car.PrivateCar;
 
@@ -22,6 +23,10 @@ public interface Household extends BaseHousehold {
 	void ownCars(Collection<PrivateCar> cars);
 
 	void returnCar(PrivateCar car);
+
+	void setHomeZone(Zone zone);
+
+	void setHomeLocation(Location location);
 
 	Collection<PrivateCar> whichCars();
 

@@ -110,4 +110,6 @@ public interface Person extends BasePerson {
 			ReschedulingStrategy rescheduling);
 
 	PersonAttributes attributes();
+
+	void setTourPattern(TourBasedActivityPattern tourPattern);
 }

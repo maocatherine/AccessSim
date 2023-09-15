@@ -20,15 +20,15 @@ dependencies {
     
     compileOnly libraries.lombok
     
-    implementation libraries.actitopp,
-            libraries.opencsv,
+    implementation libraries.opencsv,
             libraries.commons_compress,
             libraries.snakeyaml,
             libraries.rhino,
             libraries.rhino_engine,
             libraries.log4j,
             libraries.slf4j,
-            libraries.gson
+            libraries.gson,
+            project(':actitopp')
     
     testAnnotationProcessor libraries.lombok
     
@@ -43,7 +43,7 @@ dependencies {
                 libraries.mockito_junit_jupiter,
                 libraries.equalsverifier
         
-    testRuntime libraries.junit_vintage
+    //testRuntime libraries.junit_vintage
 }
 
 tasks.withType(JavaCompile) { 

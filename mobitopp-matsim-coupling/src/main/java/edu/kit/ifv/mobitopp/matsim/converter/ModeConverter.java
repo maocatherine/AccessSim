@@ -17,7 +17,7 @@ public class ModeConverter {
 		toMatsim = new HashMap<>();
 		toMatsim.put(StandardMode.BIKE, TransportMode.bike);
 		toMatsim.put(StandardMode.CAR, TransportMode.car);
-		toMatsim.put(StandardMode.PASSENGER, TransportMode.ride);
+		toMatsim.put(StandardMode.PASSENGER, TransportMode.car);
 		toMatsim.put(StandardMode.PEDESTRIAN, TransportMode.walk);
 		toMatsim.put(StandardMode.PUBLICTRANSPORT, TransportMode.pt);
 	}

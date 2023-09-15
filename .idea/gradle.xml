@@ -12,7 +12,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/example" />
+            <option value="$PROJECT_DIR$/actitopp" />
             <option value="$PROJECT_DIR$/mobitopp" />
             <option value="$PROJECT_DIR$/mobitopp-matsim-coupling" />
           </set>

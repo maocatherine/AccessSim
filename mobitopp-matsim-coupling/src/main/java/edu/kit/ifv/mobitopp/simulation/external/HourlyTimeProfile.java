@@ -10,70 +10,78 @@ import java.util.TreeMap;
 
 public class HourlyTimeProfile {
 
-	private final List<Float> values;
-	private final DiscreteRandomVariable<Integer> randomVariable;
+    private final List<Float> values;
+    private final DiscreteRandomVariable<Integer> randomVariable;
 
-	final static public HourlyTimeProfile WIDE = new HourlyTimeProfile(
-		Arrays.asList(
-			 							0.0f, 0.0f, 0.0f, 0.0f, 0.05f, 0.05f,
-									 	0.05f, 0.05f, 0.05f, 0.05f, 0.05f, 0.05f,
-									 	0.05f, 0.05f, 0.05f, 0.05f, 0.05f, 0.05f,
-									 	0.05f, 0.05f, 0.05f, 0.05f, 0.05f, 0.05f
-		)
-	);
+    final static public HourlyTimeProfile WIDE = new HourlyTimeProfile(
+            Arrays.asList(
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.05f, 0.05f,
+                    0.05f, 0.05f, 0.05f, 0.05f, 0.05f, 0.05f,
+                    0.05f, 0.05f, 0.05f, 0.05f, 0.05f, 0.05f,
+                    0.05f, 0.05f, 0.05f, 0.05f, 0.05f, 0.05f
+            )
+    );
 
-	final static public HourlyTimeProfile DEFAULT = new HourlyTimeProfile(
-		Arrays.asList(
-			 							0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-									 	0.05f, 0.05f, 0.1f,  0.1f,  0.1f,  0.1f,
-									 	0.1f,  0.1f,  0.1f,  0.1f,  0.05f, 0.05f,
-									 	0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f
-		)
-	);
+    final static public HourlyTimeProfile DEFAULT = new HourlyTimeProfile(
+            Arrays.asList(
+                    0.0f, 0.0f, 0.005f, 0.01f, 0.01f, 0.01f,
+                    0.04f, 0.1f, 0.1f, 0.04f, 0.04f, 0.04f,
+                    0.1f, 0.05f, 0.05f, 0.1f, 0.1f, 0.1f,
+                    0.05f, 0.05f, 0.0f, 0.0f, 0.0f, 0.0f
+            )
+    );
 
-
-
-	public HourlyTimeProfile(List<Float> values) {
-		verifyHours(values);
-		this.values = new ArrayList<>(values);
-		this.randomVariable = makeRandomVariable(values);
-	}
-
-	private void verifyHours(List<Float> values) {
-		if (24 != values.size()) {
-			throw new IllegalArgumentException(
-					"Incorrect number of elements in profile. Must be 24 elements, but was " + values.size());
-		}
-	}
-
-	private static DiscreteRandomVariable<Integer> makeRandomVariable(List<Float> values) {
-		Map<Integer,Float> map = new TreeMap<Integer,Float>();
-
-		for (int i=0; i<values.size(); i++) {
-			map.put(i, values.get(i));
-		}
-
-		return new DiscreteRandomVariable<Integer>(map);
-	}
+    final static public HourlyTimeProfile AVERAGE = new HourlyTimeProfile(
+            Arrays.asList(
+                    0.005f, 0.002f, 0.002f, 0.001f, 0.005f, 0.02f,
+                    0.05f, 0.11f, 0.07f, 0.05f, 0.064f, 0.06f,
+                    0.06f, 0.055f, 0.06f, 0.1f, 0.12f, 0.058f,
+                    0.04f, 0.03f, 0.02f, 0.01f, 0.005f, 0.003f
+            )
+    );
 
 
-	public float valueForHour(int hour) {
-		verifyHour(hour);
-		return this.values.get(hour);
-	}
+    public HourlyTimeProfile(List<Float> values) {
+        verifyHours(values);
+        this.values = new ArrayList<>(values);
+        this.randomVariable = makeRandomVariable(values);
+    }
 
-	private void verifyHour(int hour) {
-		if (0 > hour || 24 <= hour) {
-			throw new IllegalArgumentException("Hour must be between 0 and 23, but was " + hour);
-		}
-	}
+    private void verifyHours(List<Float> values) {
+        if (24 != values.size()) {
+            throw new IllegalArgumentException(
+                    "Incorrect number of elements in profile. Must be 24 elements, but was " + values.size());
+        }
+    }
 
-	public int randomHour(Float random) {
-		return randomVariable.realization(random);
-	}
+    private static DiscreteRandomVariable<Integer> makeRandomVariable(List<Float> values) {
+        Map<Integer, Float> map = new TreeMap<Integer, Float>();
 
-	public String toString() {
-		return values.toString();
-	}
+        for (int i = 0; i < values.size(); i++) {
+            map.put(i, values.get(i));
+        }
+
+        return new DiscreteRandomVariable<Integer>(map);
+    }
+
+
+    public float valueForHour(int hour) {
+        verifyHour(hour);
+        return this.values.get(hour);
+    }
+
+    private void verifyHour(int hour) {
+        if (0 > hour || 24 <= hour) {
+            throw new IllegalArgumentException("Hour must be between 0 and 23, but was " + hour);
+        }
+    }
+
+    public int randomHour(Float random) {
+        return randomVariable.realization(random);
+    }
+
+    public String toString() {
+        return values.toString();
+    }
 
 }

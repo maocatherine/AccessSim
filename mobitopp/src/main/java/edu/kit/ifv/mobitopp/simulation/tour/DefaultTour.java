@@ -95,7 +95,7 @@ public class DefaultTour
 		
 		if (containsActivityOf(ActivityType.WORK)) { return ActivityType.WORK; }
 		if (containsActivityOf(ActivityType.EDUCATION)) { return ActivityType.EDUCATION; }
-		if (containsActivityOf(ActivityType.SERVICE)) { return ActivityType.SERVICE; }
+		//if (containsActivityOf(ActivityType.SERVICE)) { return ActivityType.SERVICE; }
 
 		return activityWithMaxDuration().activityType();
 	}

@@ -23,7 +23,7 @@ import edu.kit.ifv.mobitopp.util.panel.PersonOfPanelData;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-class HouseholdWeightCalculator
+public class HouseholdWeightCalculator
         implements HouseholdWeightCalculatorIfc {
 
     private Map<HouseholdOfPanelDataId, HouseholdOfPanelData> households;

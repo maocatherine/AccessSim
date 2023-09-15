@@ -8,10 +8,7 @@ import java.util.Set;
 
 import edu.kit.ifv.mobitopp.data.Zone;
 import edu.kit.ifv.mobitopp.populationsynthesis.PersonBuilder;
-import edu.kit.ifv.mobitopp.simulation.ActivityType;
-import edu.kit.ifv.mobitopp.simulation.ImpedanceIfc;
-import edu.kit.ifv.mobitopp.simulation.Mode;
-import edu.kit.ifv.mobitopp.simulation.Person;
+import edu.kit.ifv.mobitopp.simulation.*;
 import edu.kit.ifv.mobitopp.simulation.activityschedule.ActivityIfc;
 import edu.kit.ifv.mobitopp.simulation.destinationChoice.DestinationChoiceModelChoiceSet;
 import edu.kit.ifv.mobitopp.simulation.destinationChoice.DestinationChoiceUtilityFunction;
@@ -53,6 +50,7 @@ public class ConstraintBasedDestinationChoiceModel
             Set<Zone> choiceSet, double randomNumber
     ) {
 
+        //Get next fixed zone. Either workplace, school or home.
         ActivityIfc activityWithKnownLocation = nextActivityWithKnownLocation(person, previousActivity, nextActivity);
 
         assert activityWithKnownLocation.isLocationSet()
@@ -101,13 +99,15 @@ public class ConstraintBasedDestinationChoiceModel
 
         TourAwareActivitySchedule schedule = (TourAwareActivitySchedule) person.activitySchedule();
 
-        Tour tour = schedule.correspondingTour(nextActivity);
+//        Tour tour = schedule.correspondingTour(nextActivity);
+        Tour tour = schedule.tourOnward(nextActivity);
 
         assert tour != null;
 
-
+        //Last activity is home activity. It is fixed in ActivityPattern.
         ActivityIfc mainActivity = tour.mainActivity();
-        ActivityIfc homeActivity = schedule.nextHomeActivity(previousActivity);
+//        ActivityIfc homeActivity = schedule.nextHomeActivity(previousActivity);
+        ActivityIfc homeActivity = schedule.lastActivity();
 
         assert homeActivity != null : ("\nprev: " + previousActivity
                 + "\nnext: " + nextActivity
@@ -178,11 +178,9 @@ public class ConstraintBasedDestinationChoiceModel
 
         // previousActivity.calculatePlannedEnd();
         // mainActivity.Begin();
-        // verfügbare Reisezeit bestimmen
 
-        // Anzahl/Dauer Zwischenaktivitäten bestimmen
-
-
+        // verfügbare Reisezeit bestimmen. determine available travel time
+        // Anzahl/Dauer Zwischenaktivitäten bestimmen. Determine number/duration of intermediate activities.
         // korrigierte verfügbare Reisezeit bestimmen -(dauer Zwischenaktivitäten + x*Anzahl)
 
         // Für alle Zonen:
@@ -194,7 +192,7 @@ public class ConstraintBasedDestinationChoiceModel
         assert activitiesBetween.contains(nextActivity) : ("\n" + previousActivity + "\n" + nextActivity + "\n" + mainActivity
                 + "\n\n" + person.activitySchedule());
 
-        int totalActivityTime = calculateTotalActivityTime(activitiesBetween);
+        int totalActivityTime = calculateTotalActivityTimeWithAv(activitiesBetween, availableModes);
 
         int additionalActivities = activitiesBetween.size() - 1;
 
@@ -206,6 +204,10 @@ public class ConstraintBasedDestinationChoiceModel
 
         assert minutesForTravel >= 0 : (minutesForTravel + ", " + availableMinutes + ", " + totalActivityTime);
 
+        //If next main activity is for home activity, the constraint is loosened.
+        if (mainActivity.activityType().isHomeActivity()) {
+            minutesForTravel = Integer.MAX_VALUE;
+        }
 
         return zonesFilter.filter(zones, person, currentZone, nextKnownZone, availableModes,
                 endOfCurrentActivity, minutesForTravel);
@@ -219,7 +221,7 @@ public class ConstraintBasedDestinationChoiceModel
         return person.activitySchedule().activitiesBetween(previousActivity, mainActivity);
     }
 
-    private int calculateTotalActivityTime(List<ActivityIfc> activitiesBetween) {
+    private int calculateTotalActivityTimeWithAv(List<ActivityIfc> activitiesBetween, Set<Mode> availableModes) {
 
         int total = 0;
 
@@ -230,6 +232,12 @@ public class ConstraintBasedDestinationChoiceModel
         int total_x = activitiesBetween.stream().mapToInt(ActivityIfc::duration).sum();
 
         assert total == total_x;
+
+        // Reduce duration here.
+        if (availableModes.contains(StandardMode.CAR)) {
+            double reducedTotal = total * 0.85;
+            total = (int) Math.round(reducedTotal);
+        }
 
         return total;
     }

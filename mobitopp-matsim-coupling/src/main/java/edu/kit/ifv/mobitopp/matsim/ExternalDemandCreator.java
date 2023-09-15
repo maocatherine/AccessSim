@@ -34,15 +34,15 @@ public class ExternalDemandCreator {
 	}
 
 	private Collection<ExternalTrip> createExternalTrips(List<VisumMatrix> matrices, Network network) {
-		ExternalTrips etm = new ExternalTrips(matrices, HourlyTimeProfile.DEFAULT, zoneRepository(), network);
+		ExternalTrips etm = new ExternalTrips(matrices, HourlyTimeProfile.AVERAGE, zoneRepository(), network);
 		Collection<ExternalTrip> trips = etm.trips(fraction());
 		return trips;
 	}
 
 	private List<VisumMatrix> externalTraffic() {
-		VisumMatrix matrix1 = VisumMatrix.loadFrom(externalMatrixFileFor("externalTrafficW"));
-		VisumMatrix matrix2 = VisumMatrix.loadFrom(externalMatrixFileFor("externalTrafficEx"));
-		return Arrays.asList(matrix1, matrix2);
+		VisumMatrix matrix1 = VisumMatrix.loadFrom(externalMatrixFileFor("externalTraffic"));
+//		VisumMatrix matrix2 = VisumMatrix.loadFrom(externalMatrixFileFor("externalTrafficEx"));
+		return Arrays.asList(matrix1);
 	}
 
 	private File externalMatrixFileFor(String fileName) {
@@ -50,7 +50,7 @@ public class ExternalDemandCreator {
 	}
 
 	private float fraction() {
-		return context.fractionOfPopulation();
+		return context.fractionOfPopulation() * 0.01f;
 	}
 
 	private ZoneRepository zoneRepository() {

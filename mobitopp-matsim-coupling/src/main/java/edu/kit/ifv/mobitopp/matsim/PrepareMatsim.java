@@ -3,9 +3,13 @@ package edu.kit.ifv.mobitopp.matsim;
 import java.io.File;
 import java.util.Stack;
 
+import org.apache.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.ConfigurationFactory;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.contrib.accessibility.AccessibilityConfigGroup;
 import org.matsim.contrib.accessibility.Modes4Accessibility;
+import org.matsim.contrib.emissions.utils.EmissionsConfigGroup;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigGroup;
 import org.matsim.core.config.ConfigReader;
@@ -59,20 +63,24 @@ public class PrepareMatsim {
 	private Config fromConfig() {
 		float fractionOfPopulation = context.fractionOfPopulation();
 		String matsimConfig = context.experimentalParameters().value("matsimConfig");
-		String facilityConfig = context.experimentalParameters().value("facilities");
+//		String facilityConfig = context.experimentalParameters().value("facilities");
 
 		Config config = ConfigUtils.loadConfig(matsimConfig);
-		config.facilities().setInputFile(facilityConfig);
+//		config.facilities().setInputFile(facilityConfig);
 
-		config.qsim().setFlowCapFactor(fractionOfPopulation);
-		config.qsim().setStorageCapFactor(fractionOfPopulation);
 		config
 				.controler()
 				.setOverwriteFileSetting(
 						OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
 
-		AccessibilityConfigGroup accConfig = ConfigUtils.addOrGetModule(config, AccessibilityConfigGroup.class);
-		accConfig.setComputingAccessibilityForMode(Modes4Accessibility.car, true);
+		//use this for accessibility
+//		AccessibilityConfigGroup accConfig = ConfigUtils.addOrGetModule(config, AccessibilityConfigGroup.class);
+//		accConfig.setComputingAccessibilityForMode(Modes4Accessibility.freespeed, true);
+
+		//use this for emission
+// 		config.scenario().setSimulationPeriodInDays(7);
+//		EmissionsConfigGroup emConfig = ConfigUtils.addOrGetModule(config, EmissionsConfigGroup.class);
+//		emConfig.setEmissionsComputationMethod(EmissionsConfigGroup.EmissionsComputationMethod.AverageSpeed);
 
 		updateResultFolder(config);
 		return config;

@@ -21,7 +21,6 @@ public class DestinationChoiceWithFixedLocations implements DestinationChoiceMod
     private DestinationChoiceModelChoiceSet destinationChoiceModel;
 
 
-
     public DestinationChoiceWithFixedLocations(
             Map<ZoneId, Zone> zones,
             DestinationChoiceModelChoiceSet destinationChoiceModel

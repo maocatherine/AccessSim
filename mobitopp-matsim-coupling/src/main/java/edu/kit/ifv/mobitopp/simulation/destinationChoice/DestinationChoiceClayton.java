@@ -62,7 +62,7 @@ public class DestinationChoiceClayton
         assert !nextActivity.activityType().isFixedActivity();
         assert possibleTargetZones.size() > 0;
 
-        final double MAX_TRAVELDISTANCE = 6;
+        final double MAX_TRAVELDISTANCE = 50;
 
         ActivityType activityType = nextActivity.activityType();
 

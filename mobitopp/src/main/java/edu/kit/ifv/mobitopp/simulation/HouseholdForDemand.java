@@ -29,8 +29,9 @@ public class HouseholdForDemand implements Household, Serializable {
 	private final int domCode;
 	private final int type;
 
-	private final Zone homeZone;
-	private final Location homeLocation;
+	//Originally, homeZone and homeLocation are final attributes.
+	private Zone homeZone;
+	private Location homeLocation;
 
 	private final byte numberOfCars;
 	private final byte numberOfMinors;
@@ -51,7 +52,7 @@ public class HouseholdForDemand implements Household, Serializable {
 	protected static int id_counter = 1;
 
 	public HouseholdForDemand(final HouseholdId id, final int nominalSize, final int domcode,
-		final int type, final Zone zone, final Location location, final int numberOfMinors,
+		final int type, Zone zone, Location location, final int numberOfMinors,
 		final int numberOfNotSimulatedChildren, final int totalNumberOfCars, final int income,
 		final int incomeClass, final EconomicalStatus economicalStatus,
 		final boolean canChargePrivately) {
@@ -105,6 +106,8 @@ public class HouseholdForDemand implements Household, Serializable {
 	public Zone homeZone() {
 		return this.homeZone;
 	}
+
+	public void setHomeZone(Zone zone) {this.homeZone = zone;}
 
 	public void addPerson(Person person) {
 		assert person != null;
@@ -262,6 +265,8 @@ public class HouseholdForDemand implements Household, Serializable {
 	public Location homeLocation() {
 		return this.homeLocation;
 	}
+
+	public void setHomeLocation(Location location) {this.homeLocation = location;}
 
 	public int monthlyIncomeEur() {
 

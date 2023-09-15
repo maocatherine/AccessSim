@@ -9,48 +9,45 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class PersonOfPanelDataId implements Comparable<PersonOfPanelDataId> {
 
-	private final HouseholdOfPanelDataId householdId;
-  private final byte personNumber;
+    private final HouseholdOfPanelDataId householdId;
+    private final byte personNumber;
 
-  public PersonOfPanelDataId(
-		HouseholdOfPanelDataId householdId,
-		int personNumber)
-  {
-		assert householdId != null;
-		assert personNumber >= 0;
+    public PersonOfPanelDataId(
+            HouseholdOfPanelDataId householdId,
+            int personNumber) {
+        assert householdId != null;
+        assert personNumber >= 0;
 
 
-    this.householdId = householdId;
-    this.personNumber = (byte) personNumber;
-  }
+        this.householdId = householdId;
+        this.personNumber = (byte) personNumber;
+    }
 
-  public HouseholdOfPanelDataId getHouseholdId()
-  {
-    return this.householdId;
-  }
+    public HouseholdOfPanelDataId getHouseholdId() {
+        return this.householdId;
+    }
 
-  public int getPersonNumber()
-  {
-    return this.personNumber;
-  }
+    public int getPersonNumber() {
+        return this.personNumber;
+    }
 
-	public int compareTo(PersonOfPanelDataId o) {
+    public int compareTo(PersonOfPanelDataId o) {
 
-		int hh_comparison = householdId.compareTo(o.householdId);
+        int hh_comparison = householdId.compareTo(o.householdId);
 
-		if (hh_comparison != 0) {
-			return hh_comparison;
-		}
+        if (hh_comparison != 0) {
+            return hh_comparison;
+        }
 
-		return personNumber - o.personNumber;
-	}
+        return personNumber - o.personNumber;
+    }
 
-	public static PersonOfPanelDataId fromPersonId(PersonId id) {
-		return new PersonOfPanelDataId(createPanelId(id.getHouseholdId()), id.getPersonNumber());
-	}
+    public static PersonOfPanelDataId fromPersonId(PersonId id) {
+        return new PersonOfPanelDataId(createPanelId(id.getHouseholdId()), id.getPersonNumber());
+    }
 
-	private static HouseholdOfPanelDataId createPanelId(HouseholdId id) {
-		return new HouseholdOfPanelDataId(id.getYear(), id.getHouseholdNumber());
-	}
+    private static HouseholdOfPanelDataId createPanelId(HouseholdId id) {
+        return new HouseholdOfPanelDataId(id.getYear(), id.getHouseholdNumber());
+    }
 
 }

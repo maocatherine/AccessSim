@@ -80,7 +80,7 @@ public class BasicModeAvailabilityModel
 
     }
 
-    //Here we remove walking as the mode if distance is more than 5km.
+    //Here we remove walking as the mode if distance is more than 3km.
     public Set<Mode> filterAvailableModes(
             Person person,
             Zone origin,

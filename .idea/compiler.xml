@@ -6,15 +6,23 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.8/448003bc1b234aac04b58e27d7755c12c3ec4236/lombok-1.18.8.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
+        </processorPath>
+        <module name="mobitopp-parent.mobitopp.test" />
+        <module name="mobitopp-parent.mobitopp.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
         </processorPath>
         <module name="mobitopp-parent.mobitopp-matsim-coupling.main" />
-        <module name="mobitopp-parent.example.test" />
-        <module name="mobitopp-parent.mobitopp.main" />
-        <module name="mobitopp-parent.mobitopp.test" />
-        <module name="mobitopp-parent.example.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="12" />
+    <bytecodeTargetLevel target="12">
+      <module name="accessibility" target="1.8" />
+      <module name="accessibility.main" target="1.8" />
+      <module name="accessibility.test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

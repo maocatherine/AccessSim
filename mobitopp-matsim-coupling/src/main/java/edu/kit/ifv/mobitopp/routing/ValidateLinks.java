@@ -23,7 +23,7 @@ import edu.kit.ifv.mobitopp.visum.VisumTransportSystem;
 
 public class ValidateLinks {
 
-	private static final double minimumRequired = 1 - 5e-3;
+	private static final double minimumRequired = 1 - 2e-1;
 
 	public VisumRoadNetwork of(VisumRoadNetwork network) {
 		GraphFromVisumNetwork graph = new GraphFromVisumNetwork(network, NodeFromVisumZone::useExternalInRouteSearch);
@@ -50,7 +50,7 @@ public class ValidateLinks {
 		System.out.printf("%01d links are unreachable.%n", unreachable);
 		System.out.println("Both directions of unreachable links will be removed.");
 		Predicate<Link> reachable = reachableLinks::contains;
-		logFiltered(links, reachable.negate());
+		//logFiltered(links, reachable.negate());
 		if (minimumRequired > ratio) {
 			throw new IllegalArgumentException(
 					String.format("Less than %3e of MIV links are incorrect.", minimumRequired));

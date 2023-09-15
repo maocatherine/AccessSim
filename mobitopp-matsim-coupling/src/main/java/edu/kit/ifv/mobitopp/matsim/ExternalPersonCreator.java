@@ -18,7 +18,7 @@ public class ExternalPersonCreator {
 
 	static final String OUTFLOW = "OUTFLOW";
 	static final String INFLOW = "INFLOW";
-	static final RelativeTime externalTripDuration = RelativeTime.ofHours(2);
+	static final RelativeTime externalTripDuration = RelativeTime.ofHours(1);
 	private final Population population;
 	private final PopulationFactory populationFactory;
 	private int i;

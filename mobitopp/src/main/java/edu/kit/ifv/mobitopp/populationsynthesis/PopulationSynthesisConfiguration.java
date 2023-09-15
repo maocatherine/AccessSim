@@ -25,94 +25,94 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PopulationSynthesisConfiguration extends BasicPopulationSynthesisIpf {
 
-  public PopulationSynthesisConfiguration(
-      CarOwnershipModel carOwnershipModel, HouseholdLocationSelector householdLocationSelector,
-      ChargePrivatelySelector chargePrivatelySelector, PersonCreator personCreator,
-      ActivityScheduleAssigner activityScheduleAssigner, SynthesisContext context) {
+    public PopulationSynthesisConfiguration(
+            CarOwnershipModel carOwnershipModel, HouseholdLocationSelector householdLocationSelector,
+            ChargePrivatelySelector chargePrivatelySelector, PersonCreator personCreator,
+            ActivityScheduleAssigner activityScheduleAssigner, SynthesisContext context) {
 
-    super(carOwnershipModel, householdLocationSelector, chargePrivatelySelector, personCreator,
-        activityScheduleAssigner, oecd2017(), context);
-  }
-
-  public static void main(String... args) throws Exception {
-    if (1 > args.length) {
-      log.info("Usage: ... <configuration file>");
-      System.exit(-1);
+        super(carOwnershipModel, householdLocationSelector, chargePrivatelySelector, personCreator,
+                activityScheduleAssigner, oecd2017(), context);
     }
 
-    File configurationFile = new File(args[0]);
-    LocalDateTime start = LocalDateTime.now();
-    startSynthesis(configurationFile);
-    LocalDateTime end = LocalDateTime.now();
-    Duration runtime = Duration.between(start, end);
-    log.info("Population synthesis took " + runtime);
-  }
+    public static void main(String... args) throws Exception {
+        if (1 > args.length) {
+            log.info("Usage: ... <configuration file>");
+            System.exit(-1);
+        }
 
-  private static void startSynthesis(File configurationFile)
-      throws Exception {
-    SynthesisContext context = new ContextBuilder().buildFrom(configurationFile);
-    startSynthesis(context);
-  }
+        File configurationFile = new File(args[0]);
+        LocalDateTime start = LocalDateTime.now();
+        startSynthesis(configurationFile);
+        LocalDateTime end = LocalDateTime.now();
+        Duration runtime = Duration.between(start, end);
+        log.info("Population synthesis took " + runtime);
+    }
 
-  public static void startSynthesis(SynthesisContext context) {
-    context.printStartupInformationOn(System.out);
-    PopulationSynthesisConfiguration synthesizer = populationSynthesis(context);
-    synthesizer.createPopulation();
-  }
+    private static void startSynthesis(File configurationFile)
+            throws Exception {
+        SynthesisContext context = new ContextBuilder().buildFrom(configurationFile);
+        startSynthesis(context);
+    }
 
-  private static HouseholdLocationSelector householdLocations(SynthesisContext context) {
-    return new LanduseCLCwithRoadsHouseholdLocationSelector(context);
-  }
+    public static void startSynthesis(SynthesisContext context) {
+        context.printStartupInformationOn(System.out);
+        PopulationSynthesisConfiguration synthesizer = populationSynthesis(context);
+        synthesizer.createPopulation();
+    }
 
-  private static PopulationSynthesisConfiguration populationSynthesis(SynthesisContext context) {
-    HouseholdLocationSelector householdLocationSelector = householdLocations(context);
-    CommutationTicketModelIfc commuterTicketModel = commuterTickets(context);
-    CarOwnershipModel carOwnershipModel = carOwnership(context);
-    ChargePrivatelySelector chargePrivatelySelector = chargePrivately(context);
-    PersonCreator personCreator = personCreator(context, commuterTicketModel);
-    ActivityScheduleCreator scheduleCreator = new DefaultActivityScheduleCreator();
-    PanelDataRepository panelDataRepository = context.dataRepository().panelDataRepository();
-    ActivityScheduleAssigner activityScheduleAssigner = new DefaultActivityAssigner(
-        panelDataRepository, scheduleCreator);
-    return populationSynthesis(householdLocationSelector, carOwnershipModel,
-        chargePrivatelySelector, personCreator, activityScheduleAssigner, context);
-  }
+    private static HouseholdLocationSelector householdLocations(SynthesisContext context) {
+        return new LanduseCLCwithRoadsHouseholdLocationSelector(context);
+    }
 
-  private static EmobilityPersonCreator personCreator(
-      SynthesisContext context, CommutationTicketModelIfc commuterTicketModel) {
-    Map<String, MobilityProviderCustomerModel> carSharing = context.carSharing();
-    return new EmobilityPersonCreator(commuterTicketModel, carSharing, context.seed());
-  }
+    private static PopulationSynthesisConfiguration populationSynthesis(SynthesisContext context) {
+        HouseholdLocationSelector householdLocationSelector = householdLocations(context);
+        CommutationTicketModelIfc commuterTicketModel = commuterTickets(context);
+        CarOwnershipModel carOwnershipModel = carOwnership(context);
+        ChargePrivatelySelector chargePrivatelySelector = chargePrivately(context);
+        PersonCreator personCreator = personCreator(context, commuterTicketModel);
+        ActivityScheduleCreator scheduleCreator = new DefaultActivityScheduleCreator();
+        PanelDataRepository panelDataRepository = context.dataRepository().panelDataRepository();
+        ActivityScheduleAssigner activityScheduleAssigner = new DefaultActivityAssigner(
+                panelDataRepository, scheduleCreator);
+        return populationSynthesis(householdLocationSelector, carOwnershipModel,
+                chargePrivatelySelector, personCreator, activityScheduleAssigner, context);
+    }
 
-  private static CommutationTicketModelIfc commuterTickets(SynthesisContext context) {
-    String commuterTicketFile = context.configuration().getCommuterTicket();
-    return new CommutationTicketModelStuttgart(commuterTicketFile, context.seed());
-  }
+    private static EmobilityPersonCreator personCreator(
+            SynthesisContext context, CommutationTicketModelIfc commuterTicketModel) {
+        Map<String, MobilityProviderCustomerModel> carSharing = context.carSharing();
+        return new EmobilityPersonCreator(commuterTicketModel, carSharing, context.seed());
+    }
 
-  private static CarOwnershipModel carOwnership(SynthesisContext context) {
-    IdSequence carIDs = new IdSequence();
-    long seed = context.seed();
-    File engineFile = context.carEngineFile();
-    String ownershipFile = context.configuration().getCarOwnership().getOwnership();
-    String segmentFile = context.configuration().getCarOwnership().getSegment();
-    ImpedanceIfc impedance = context.impedance();
-    CarSegmentModel segmentModel = new LogitBasedCarSegmentModel(impedance, seed, segmentFile);
-    ProbabilityForElectricCarOwnershipModel calculator = new ElectricCarOwnershipBasedOnSociodemographic(
-        impedance, engineFile.getAbsolutePath());
-    return new GenericElectricCarOwnershipModel(carIDs, segmentModel, seed, calculator,
-        ownershipFile);
-  }
+    private static CommutationTicketModelIfc commuterTickets(SynthesisContext context) {
+        String commuterTicketFile = context.configuration().getCommuterTicket();
+        return new CommutationTicketModelStuttgart(commuterTicketFile, context.seed());
+    }
 
-  private static AllowChargingProbabilityBased chargePrivately(SynthesisContext context) {
-    return new AllowChargingProbabilityBased(context.seed());
-  }
+    private static CarOwnershipModel carOwnership(SynthesisContext context) {
+        IdSequence carIDs = new IdSequence();
+        long seed = context.seed();
+        File engineFile = context.carEngineFile();
+        String ownershipFile = context.configuration().getCarOwnership().getOwnership();
+        String segmentFile = context.configuration().getCarOwnership().getSegment();
+        ImpedanceIfc impedance = context.impedance();
+        CarSegmentModel segmentModel = new LogitBasedCarSegmentModel(impedance, seed, segmentFile);
+        ProbabilityForElectricCarOwnershipModel calculator = new ElectricCarOwnershipBasedOnSociodemographic(
+                impedance, engineFile.getAbsolutePath());
+        return new GenericElectricCarOwnershipModel(carIDs, segmentModel, seed, calculator,
+                ownershipFile);
+    }
 
-  private static PopulationSynthesisConfiguration populationSynthesis(
-      HouseholdLocationSelector householdLocationSelector, CarOwnershipModel carOwnershipModel,
-      ChargePrivatelySelector chargePrivatelySelector, PersonCreator personCreator,
-      ActivityScheduleAssigner activityScheduleAssigner, SynthesisContext context) {
-    return new PopulationSynthesisConfiguration(carOwnershipModel, householdLocationSelector,
-        chargePrivatelySelector, personCreator, activityScheduleAssigner, context);
-  }
+    private static AllowChargingProbabilityBased chargePrivately(SynthesisContext context) {
+        return new AllowChargingProbabilityBased(context.seed());
+    }
+
+    private static PopulationSynthesisConfiguration populationSynthesis(
+            HouseholdLocationSelector householdLocationSelector, CarOwnershipModel carOwnershipModel,
+            ChargePrivatelySelector chargePrivatelySelector, PersonCreator personCreator,
+            ActivityScheduleAssigner activityScheduleAssigner, SynthesisContext context) {
+        return new PopulationSynthesisConfiguration(carOwnershipModel, householdLocationSelector,
+                chargePrivatelySelector, personCreator, activityScheduleAssigner, context);
+    }
 
 }

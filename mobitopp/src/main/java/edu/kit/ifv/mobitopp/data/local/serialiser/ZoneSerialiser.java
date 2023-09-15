@@ -129,8 +129,8 @@ public class ZoneSerialiser implements Closeable {
 
 	private void serialiseCars(CarSharingDataForZone carSharing) {
 		serialiseConventionalCars(carSharing);
-		serialiseStationBasedCars(carSharing);
-		serialiseFreeFloatingCars(carSharing);
+		//serialiseStationBasedCars(carSharing);
+		//serialiseFreeFloatingCars(carSharing);
 	}
 
 	private void serialiseConventionalCars(CarSharingDataForZone carSharing) {

@@ -4,13 +4,20 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 
+import edu.kit.ifv.mobitopp.data.TravelTimeMatrix;
+import edu.kit.ifv.mobitopp.data.local.InMemoryMatrices;
 import edu.kit.ifv.mobitopp.data.local.configuration.DynamicParameters;
 import edu.kit.ifv.mobitopp.data.local.configuration.ParserBuilder;
 import edu.kit.ifv.mobitopp.data.local.configuration.SimulationParser;
 import edu.kit.ifv.mobitopp.matsim.MatsimContext;
 import edu.kit.ifv.mobitopp.matsim.MatsimContextBuilder;
+import edu.kit.ifv.mobitopp.populationsynthesis.Population;
+import edu.kit.ifv.mobitopp.time.DayOfWeek;
 
 public class MobitoppMatsimCoupling {
 
@@ -64,5 +71,10 @@ public class MobitoppMatsimCoupling {
 		WrittenConfiguration configuration = format.parse(configurationFile);
 		new MobitoppMatsimCoupling(configuration).simulate();
 	}
+
+//	private void updateHouseholds(WrittenConfiguration configuration) throws IOException {
+//		WrittenConfiguration derived = new WrittenConfiguration(configuration);
+//		SimulationContext context = new ContextBuilder().buildFrom(derived);
+//	}
 
 }

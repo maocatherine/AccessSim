@@ -151,6 +151,9 @@ public class PersonForDemand implements Person, Serializable {
         return id.getOid();
     }
 
+
+    public void setTourPattern(TourBasedActivityPattern tourPattern) {this.tourPattern = tourPattern;}
+
     @Override
     public boolean isCarDriver() {
 

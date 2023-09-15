@@ -14,10 +14,10 @@ import edu.kit.ifv.mobitopp.visum.VisumZone;
 
 public class MatsimZoneLinkCreator extends BaseLinkCreator {
 
-	private static final float ZONE_CAPACITY = 100000;
-	private static final float ZONE_FREESPEED = 30.0f;    // km/h
+	private static final float ZONE_CAPACITY = 1000;
+	private static final float ZONE_FREESPEED = 50.0f;    // km/h
 	private static final float ZONE_LENGTH = 1; // km
-	private static final int ZONE_LANES = 2;
+	private static final int ZONE_LANES = 1;
 	private static final Set<String> ZONE_MODES;
 
 	static {

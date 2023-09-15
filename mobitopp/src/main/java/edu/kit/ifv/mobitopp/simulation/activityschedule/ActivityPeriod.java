@@ -316,6 +316,19 @@ public class ActivityPeriod extends ActivitySequenceAsLinkedList
 		return this.tourFactory.createTour(beginOfTour, endOfTour, this);
 	}
 
+
+	public Tour tourOnward(ActivityIfc activity) {
+
+		ActivityIfc endOfTour = activity;
+		ActivityIfc beginOfTour = activity;
+
+		while (endOfTour != lastActivity() || !endOfTour.activityType().isHomeActivity()) {
+			endOfTour = nextActivity(endOfTour);
+		}
+
+		return this.tourFactory.createTour(beginOfTour, endOfTour, this);
+	}
+
 	@Override
 	public Tour firstTour() {
 

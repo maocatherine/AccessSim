@@ -1,0 +1,31 @@
+dataSource: !file
+  demandDataFolder: output/short-term/demand-data
+  matrixConfigurationFile: data_shortterm/matrices/matrix-configuration.yaml
+  attractivityDataFile: data_shortterm/zone_properties/attractivities.csv
+  zonePropertiesDataFile: data_shortterm/zone_properties/zone-properties.csv
+  parkingFacilitiesDataFile: data_shortterm/zone_properties/parking-facilities.csv
+
+  bikeSharingPropertiesDataFile: data_shortterm/zone_properties/bikesharing-properties.csv
+  carSharingPropertiesDataFile: data_shortterm/zone_properties/carsharing-properties.csv
+  carSharingStationsDataFile: data_shortterm/zone_properties/carsharing-stations.csv
+  carSharingFreeFloatingDataFile: data_shortterm/zone_properties/carsharing-free-floating.csv
+  defaultChargingPower: data_shortterm/parameters/ChargingPower.txt
+  zoneRepositoryFolder: output/zone-repository/
+days: 1
+modeChoice:
+  firstTrip: data_shortterm/parameters/ModeSelectorParameterFirstTrip.txt
+  otherTrip: data_shortterm/parameters/ModeSelectorParameterOtherTrip.txt
+destinationChoice:
+  repetition: data_shortterm/parameters/TargetParameterRepetition.csv
+  cost: data_shortterm/parameters/TargetParameterCost.txt
+fractionOfPopulation: 1
+#numberOfZones: 6
+resultFolder: results/short-term/VOT15VRCMINUS0/simulation
+seed: 1234
+visumFile: data_shortterm/clayton_map/Melbourne2023v2.net
+experimental:
+  iterations: 5
+  matsimConfig: config/short term/matsim-config.xml
+  #facilities: facilities/measure-facilities-12km-destination.xml
+  externalTraffic: data_shortterm/external_demand/new-demand-external-destzonev2.mtx
+  travelTimeMatrixFolderName: travelTime

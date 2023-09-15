@@ -14,6 +14,7 @@ import edu.kit.ifv.mobitopp.simulation.modeChoice.stuttgart.ModeSelectorParamete
 import edu.kit.ifv.mobitopp.simulation.person.DefaultTripFactory;
 import edu.kit.ifv.mobitopp.simulation.person.PersonStateSimple;
 import edu.kit.ifv.mobitopp.simulation.person.TripFactory;
+import edu.kit.ifv.mobitopp.simulation.tour.ConstraintBasedDestinationChoiceModel;
 import edu.kit.ifv.mobitopp.simulation.tour.TourBasedModeChoiceModelDummy;
 
 import java.io.File;
@@ -65,11 +66,9 @@ public class Mobitopp extends Simulation {
 
 		return new DestinationChoiceWithFixedLocations(
 				zoneRepository().zones(),
-				new DestinationChoiceClayton(
+				new ConstraintBasedDestinationChoiceModel(
 						new DestinationChoiceModelStuttgart(impedance, destinationChoiceFiles.get("cost")),
-						modeAvailabilityModel,
-						impedance, new CarRangeReachableZonesFilter(impedance),
-						false));
+						modeAvailabilityModel, impedance, 1, 5));
 //                        new CarRangeReachableZonesFilter(impedance),
 //                        new AttractivityCalculatorCostNextPole(zoneRepository().zones(),
 //                                impedance, destinationChoiceFiles.get("cost"), 0.5f)));

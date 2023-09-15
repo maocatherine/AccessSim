@@ -20,69 +20,68 @@ import edu.kit.ifv.mobitopp.simulation.person.PublicTransportBehaviour;
 import edu.kit.ifv.mobitopp.simulation.person.SimulationPersonPassenger;
 import edu.kit.ifv.mobitopp.simulation.person.TripFactory;
 
-public class DemandSimulatorTour 
-	extends DemandSimulatorPassenger {
-	
-	public DemandSimulatorTour(
-		final DestinationChoiceModel destinationChoiceModel,
-		final TourBasedModeChoiceModel modeChoiceModel,
-		final ZoneBasedRouteChoice routeChoice,
-	final ActivityPeriodFixer activityPeriodFixer,
-    final ActivityStartAndDurationRandomizer activityDurationRandomizer,
-    final TripFactory tripFactory,
-    final ReschedulingStrategy rescheduling,
-    final Set<Mode> modesInSimulation,
-    final PersonState initialState, 
-    final SimulationContext context
-  ) {
-    super(destinationChoiceModel, modeChoiceModel, routeChoice, activityPeriodFixer, activityDurationRandomizer,
-        tripFactory, rescheduling, modesInSimulation, initialState, context);
-  }
-	
-  public DemandSimulatorTour(
-      final DestinationChoiceModel destinationChoiceModelForDemandSimulation_,
-			final TourBasedModeChoiceModel modeChoice,
-			final ZoneBasedRouteChoice routeChoice,
-			final ActivityPeriodFixer activityPeriodFixer,
-			final ActivityStartAndDurationRandomizer activityDurationRandomizer,
-      final TripFactory tripFactory,
-      final ReschedulingStrategy rescheduling,
-			final PersonState initialState,
-			final SimulationContext context
-	)
-  {
-		this(destinationChoiceModelForDemandSimulation_,
-					modeChoice,
-					routeChoice,
-					activityPeriodFixer,
-					activityDurationRandomizer,
-					tripFactory, 
-					rescheduling,
-					StandardChoiceSet.CHOICE_SET_FULL,
-					initialState, 
-					context
-			);
-	}
- 
-  
-	@Override
-	protected SimulationPersonPassenger createSimulatedPerson(
-			EventQueue queue, PublicTransportBehaviour boarder, long seed, Person p,
-			PersonListener listener, Set<Mode> modesInSimulation, PersonState initialState) {
-		TripFactory tripFactory = new DefaultTripFactory();
-    return new SimulationPersonTour(p, 
-																					zoneRepository(),
-																					queue,
-																					simulationOptions(), 
-																					simulationDays(),
-																					modesInSimulation,
-																					tourFactory, 
-																					tripFactory,
-																					this.initialState,
-																					boarder,
-																					seed,
-																					listener
-																				);
-	}
+public class DemandSimulatorTour
+        extends DemandSimulatorPassenger {
+
+    public DemandSimulatorTour(
+            final DestinationChoiceModel destinationChoiceModel,
+            final TourBasedModeChoiceModel modeChoiceModel,
+            final ZoneBasedRouteChoice routeChoice,
+            final ActivityPeriodFixer activityPeriodFixer,
+            final ActivityStartAndDurationRandomizer activityDurationRandomizer,
+            final TripFactory tripFactory,
+            final ReschedulingStrategy rescheduling,
+            final Set<Mode> modesInSimulation,
+            final PersonState initialState,
+            final SimulationContext context
+    ) {
+        super(destinationChoiceModel, modeChoiceModel, routeChoice, activityPeriodFixer, activityDurationRandomizer,
+                tripFactory, rescheduling, modesInSimulation, initialState, context);
+    }
+
+    public DemandSimulatorTour(
+            final DestinationChoiceModel destinationChoiceModelForDemandSimulation_,
+            final TourBasedModeChoiceModel modeChoice,
+            final ZoneBasedRouteChoice routeChoice,
+            final ActivityPeriodFixer activityPeriodFixer,
+            final ActivityStartAndDurationRandomizer activityDurationRandomizer,
+            final TripFactory tripFactory,
+            final ReschedulingStrategy rescheduling,
+            final PersonState initialState,
+            final SimulationContext context
+    ) {
+        this(destinationChoiceModelForDemandSimulation_,
+                modeChoice,
+                routeChoice,
+                activityPeriodFixer,
+                activityDurationRandomizer,
+                tripFactory,
+                rescheduling,
+                StandardChoiceSet.CHOICE_SET_FULL,
+                initialState,
+                context
+        );
+    }
+
+
+    @Override
+    protected SimulationPersonPassenger createSimulatedPerson(
+            EventQueue queue, PublicTransportBehaviour boarder, long seed, Person p,
+            PersonListener listener, Set<Mode> modesInSimulation, PersonState initialState) {
+        TripFactory tripFactory = new DefaultTripFactory();
+        return new SimulationPersonTour(p,
+                zoneRepository(),
+                queue,
+                simulationOptions(),
+                simulationDays(),
+                modesInSimulation,
+                tourFactory,
+                tripFactory,
+                this.initialState,
+                boarder,
+                seed,
+                listener
+        );
+    }
 
 }

@@ -28,4 +28,9 @@ public class MatsimContextBuilder extends ContextBuilder {
 		Network network = super.network();
 		return new ValidateLinks().of(network.visumNetwork);
 	}
+
+	public MatsimContext buildFromShort(File configurationFile) throws IOException {
+		SimulationContext baseContext = super.buildFrom(configurationFile);
+		return new MatsimContext(baseContext, network());
+	}
 }

@@ -162,7 +162,7 @@ public class SimpleRoadNetwork
 
             result.put(id, new Zone(this, visum, zone));
 
-            System.out.println("parsed zone " + zone.id);
+            //System.out.println("parsed zone " + zone.id);
         }
 
 

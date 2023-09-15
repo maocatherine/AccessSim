@@ -21,59 +21,61 @@ import edu.kit.ifv.mobitopp.visum.VisumRoadNetwork;
 
 public class MatsimHourMatrixCalculator {
 
-  private final Network network;
-  private final VisumRoadNetwork visumNetwork;
-  private final Map<Integer, ZoneId> idsToOids;
-  private final Controler controler;
+    private final Network network;
+    private final VisumRoadNetwork visumNetwork;
+    private final Map<Integer, ZoneId> idsToOids;
+    private final Controler controler;
 
-  public MatsimHourMatrixCalculator(
-      Network network, VisumRoadNetwork visumNetwork, Map<Integer, ZoneId> idsToOids,
-      Controler controler) {
-    super();
-    this.network = network;
-    this.visumNetwork = visumNetwork;
-    this.idsToOids = idsToOids;
-    this.controler = controler;
-  }
-
-  public TravelTimeMatrix calculateMatrix(float timeOfDayInSec) {
-    System.out.println("starting Dijkstra: " + ((int) timeOfDayInSec / 60 / 60));
-    TravelTimeFromMatsim ttForGraph = createTravelTimeForGraph();
-    MatsimGraph graph = createMatsimGraph(timeOfDayInSec, ttForGraph);
-    edu.kit.ifv.mobitopp.routing.TravelTime ttFunction = new MatsimVisumTravelTime(ttForGraph);
-    return doCalculateMatrix(timeOfDayInSec, graph, ttFunction);
-  }
-
-  private MatsimGraph createMatsimGraph(float timeOfDayInSec, TravelTimeFromMatsim ttForGraph) {
-    return new MatsimGraph(visumNetwork, ttForGraph, timeOfDayInSec);
-  }
-
-  private TravelTimeFromMatsim createTravelTimeForGraph() {
-    TravelTime tt = controler.getLinkTravelTimes();
-    return new TravelTimeFromMatsim(network, tt);
-  }
-
-  private TravelTimeMatrix doCalculateMatrix(
-      float timeOfDayInSec, MatsimGraph graph, edu.kit.ifv.mobitopp.routing.TravelTime ttfunction) {
-    TravelTimeMatrix ttMatrix = new TravelTimeMatrix(new ArrayList<>(idsToOids.values()),
-        Float.POSITIVE_INFINITY);
-    for (Entry<Integer, Node> from : graph.zones().entrySet()) {
-      Integer fromId = from.getKey();
-      Node zone = from.getValue();
-      Map<Node, Path> paths = dijkstra()
-          .shortestPathToAllZones(graph, ttfunction, zone, timeOfDayInSec);
-      for (Node n : paths.keySet()) {
-        Path p = paths.get(n);
-        Integer toId = Integer.valueOf(n.id().replaceFirst("Z", ""));
-        if (fromId != toId) {
-          ttMatrix.set(idsToOids.get(fromId), idsToOids.get(toId), p.travelTime() / 60.0f);
-        }
-      }
+    public MatsimHourMatrixCalculator(
+            Network network, VisumRoadNetwork visumNetwork, Map<Integer, ZoneId> idsToOids,
+            Controler controler) {
+        super();
+        this.network = network;
+        this.visumNetwork = visumNetwork;
+        this.idsToOids = idsToOids;
+        this.controler = controler;
     }
-    return ttMatrix;
-  }
 
-  private TimeAwareForwardDijkstra dijkstra() {
-    return new TimeAwareForwardDijkstra(new PriorityQueueBasedPQ<>());
-  }
+    public TravelTimeMatrix calculateMatrix(float timeOfDayInSec) {
+        System.out.println("starting Dijkstra: " + ((int) timeOfDayInSec / 60 / 60));
+        TravelTimeFromMatsim ttForGraph = createTravelTimeForGraph();
+        MatsimGraph graph = createMatsimGraph(timeOfDayInSec, ttForGraph);
+        edu.kit.ifv.mobitopp.routing.TravelTime ttFunction = new MatsimVisumTravelTime(ttForGraph);
+        return doCalculateMatrix(timeOfDayInSec, graph, ttFunction);
+    }
+
+    private MatsimGraph createMatsimGraph(float timeOfDayInSec, TravelTimeFromMatsim ttForGraph) {
+        return new MatsimGraph(visumNetwork, ttForGraph, timeOfDayInSec);
+    }
+
+    private TravelTimeFromMatsim createTravelTimeForGraph() {
+        TravelTime tt = controler.getLinkTravelTimes();
+        return new TravelTimeFromMatsim(network, tt);
+    }
+
+    private TravelTimeMatrix doCalculateMatrix(
+            float timeOfDayInSec, MatsimGraph graph, edu.kit.ifv.mobitopp.routing.TravelTime ttfunction) {
+        TravelTimeMatrix ttMatrix = new TravelTimeMatrix(new ArrayList<>(idsToOids.values()), 0.472f);
+        for (Entry<Integer, Node> from : graph.zones().entrySet()) {
+            Integer fromId = from.getKey();
+            Node zone = from.getValue();
+            Map<Node, Path> paths = dijkstra()
+                    .shortestPathToAllZones(graph, ttfunction, zone, timeOfDayInSec);
+            for (Node n : paths.keySet()) {
+                Path p = paths.get(n);
+                Integer toId = Integer.valueOf(n.id().replaceFirst("Z", ""));
+                if (fromId != toId) {
+                    ttMatrix.set(idsToOids.get(fromId), idsToOids.get(toId), p.travelTime() / 60.0f);
+                }
+                else {
+                    ttMatrix.set(idsToOids.get(fromId), idsToOids.get(toId), 0.472f);
+                }
+            }
+        }
+        return ttMatrix;
+    }
+
+    private TimeAwareForwardDijkstra dijkstra() {
+        return new TimeAwareForwardDijkstra(new PriorityQueueBasedPQ<>());
+    }
 }

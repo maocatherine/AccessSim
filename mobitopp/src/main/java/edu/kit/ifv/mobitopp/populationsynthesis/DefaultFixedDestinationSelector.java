@@ -93,10 +93,6 @@ class DefaultFixedDestinationSelector implements FixedDestinationSelector {
             SortedMap<Integer, List<PersonBuilder>> personDistances
                     = calculatePersonDistanceDistribution(activityType, persons, panelPersons);
 
-            // 3. Distribution of target cells according to distance
-            // 4. Scale the distance distribution of the target cells (according to the number of people)
-            // 5. Assign poles.
-
             SortedMap<Integer, Map<ZoneId, Float>> zoneDistances
                     = calculateZoneDistanceDistribution(zone, activityType);
 
@@ -207,10 +203,9 @@ class DefaultFixedDestinationSelector implements FixedDestinationSelector {
             // Think twice before changing the following if.
             //~10% of all persons did not report a pole distance, so no zone will be assigned.
             // This matches the percentage of holiday weeks in a year vs. all weeks of a year (5/50)
-            if (
-                    activityTypeMatchesEmploymentType(activityType, person.employment())
+            if (activityTypeMatchesEmploymentType(activityType, person.employment())
                             || (activityType == ActivityType.WORK || activityType == ActivityType.EDUCATION)
-                            && person.getPatternActivityWeek().existsPatternActivity(activityType)
+                            || person.getPatternActivityWeek().existsPatternActivity(activityType)
                             && !person.hasFixedZoneFor(activityType)
             ) {
                 int dist = (int) personOfPanelData.getPoleDistance(); //Here extract the commute distance from panel data.

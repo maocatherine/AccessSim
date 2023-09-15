@@ -9,7 +9,7 @@ import edu.kit.ifv.mobitopp.util.panel.HouseholdOfPanelData;
 import edu.kit.ifv.mobitopp.util.panel.HouseholdOfPanelDataId;
 import edu.kit.ifv.mobitopp.util.panel.PersonOfPanelData;
 
-interface HouseholdWeightCalculatorIfc {
+public interface HouseholdWeightCalculatorIfc {
 
 	public List<HouseholdOfPanelDataId> calculateWeights(
   	RangeDistributionIfc hhDistribution,

@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LocationParser {
 
 	static final String precise = "(%s,%s: %d, %s)";
-	static final String rounded = "(%.3f,%.3f: %d, %.3f)";
+	static final String rounded = "(%.8f,%.8f: %d, %.8f)";
 	private static final Pattern format = Pattern.compile("\\((.*),(.*): (.*), (.*)\\)");
 
 	public String serialise(Location location) {

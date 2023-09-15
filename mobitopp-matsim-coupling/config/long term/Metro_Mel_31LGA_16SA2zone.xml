@@ -1,0 +1,913 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE facilities SYSTEM "http://www.matsim.org/files/dtd/facilities_v1.dtd">
+<facilities>
+  <facility id="Upper Yarra Valley" x="145.97602310538207" y="-37.65150536637952">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Brunswick" x="144.96126678573364" y="-37.766441514464304">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Brunswick East" x="144.97766765623737" y="-37.76890343014912">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Brunswick West" x="144.9425416425828" y="-37.76331998652813">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Coburg" x="144.9642015010985" y="-37.74487466293533">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Pascoe Vale South" x="144.93846472436755" y="-37.743445380300045">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Alphington - Fairfield" x="145.0246746287312" y="-37.77446379446849">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Northcote" x="145.00014962280693" y="-37.77222372534458">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Thornbury" x="145.0063841225293" y="-37.75816445022917">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ascot Vale" x="144.91367939618726" y="-37.77697633029334">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Essendon - Aberfeldie" x="144.9075836411722" y="-37.75062291271723">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Flemington" x="144.930902361255" y="-37.78382787645529">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Moonee Ponds" x="144.9214293021207" y="-37.76562574663087">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Carlton" x="144.96779847631865" y="-37.800513394977145">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Docklands" x="144.94327993741922" y="-37.817960791257455">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="East Melbourne" x="144.98147802259268" y="-37.817154676746895">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Flemington Racecourse" x="144.9125776448425" y="-37.787999174921936">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Kensington (Vic.)" x="144.92706769611732" y="-37.794331586533474">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Melbourne" x="144.96256420617328" y="-37.8136248233269">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="North Melbourne" x="144.94629821688932" y="-37.80118767607036">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Parkville" x="144.95153327034427" y="-37.78710478475796">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="South Yarra - West" x="144.98187164146316" y="-37.83944222248056">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Southbank" x="144.96748189787138" y="-37.82635089757582">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="West Melbourne" x="144.92204320003373" y="-37.810122164506254">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Albert Park" x="144.96404831507775" y="-37.84563700634271">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Elwood" x="144.98553444705715" y="-37.880922093879455">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Port Melbourne" x="144.93505090237727" y="-37.838071179940975">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Port Melbourne Industrial" x="144.9171024470204" y="-37.831018496806166">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="South Melbourne" x="144.95717066429484" y="-37.83338279018358">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="St Kilda" x="144.9801590373098" y="-37.86240090797549">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="St Kilda East" x="144.99818220384563" y="-37.86708111839886">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Armadale" x="145.02070485754325" y="-37.85676011998351">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Prahran - Windsor" x="144.99805168973376" y="-37.85284986233125">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="South Yarra - East" x="144.99563698395968" y="-37.83992079760668">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Toorak" x="145.01762143298276" y="-37.84161319669164">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Abbotsford" x="144.99976175510096" y="-37.80459800419448">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Carlton North - Princes Hill" x="144.96812650043773" y="-37.785711666560125">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Collingwood" x="144.98813573337748" y="-37.80209135083516">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Fitzroy" x="144.97913342167007" y="-37.80104398509177">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Fitzroy North" x="144.98430280932723" y="-37.78407813889493">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Richmond (Vic.)" x="145.0040467431627" y="-37.82290709758445">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Yarra - North" x="145.012960727056" y="-37.78983985872247">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ashburton (Vic.)" x="145.0805723996965" y="-37.86738891316776">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Balwyn" x="145.08055676678143" y="-37.80980551591176">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Balwyn North" x="145.08389401869408" y="-37.79189036784618">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Camberwell" x="145.07401675207154" y="-37.83844181663648">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Glen Iris - East" x="145.07199997471912" y="-37.8547446106752">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hawthorn" x="145.03157483091377" y="-37.82440089488534">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hawthorn East" x="145.04990557728058" y="-37.83128299911107">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Kew" x="145.03325258094196" y="-37.80345321669256">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Kew East" x="145.0523855855264" y="-37.79056780955671">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Surrey Hills (West) - Canterbury" x="145.08403245943055" y="-37.82450018093857">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bulleen" x="145.08717993550567" y="-37.7688847584248">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Doncaster" x="145.12385264818124" y="-37.78482824362851">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Templestowe" x="145.14863297703027" y="-37.75404739167374">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Templestowe Lower" x="145.1122726114919" y="-37.76386776628436">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Doncaster East (North)" x="145.16925571398008" y="-37.76943927410314">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Doncaster East (South)" x="145.15669155637033" y="-37.7915121741475">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Blackburn" x="145.15290729553533" y="-37.81655833000286">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Blackburn South" x="145.14653985622942" y="-37.83935779412684">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Box Hill" x="145.1247410974238" y="-37.82903802418542">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Box Hill North" x="145.12269150380996" y="-37.8046925706056">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Burwood" x="145.11294472342036" y="-37.848064516664074">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Burwood East" x="145.15041571121617" y="-37.853585866594415">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Surrey Hills (East) - Mont Albert" x="145.10689524481973" y="-37.82429485672219">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Beaumaris" x="145.03775029643907" y="-37.98080331931772">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Brighton (Vic.)" x="144.9958167998055" y="-37.90818911023921">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Brighton East" x="145.01630514206875" y="-37.91714936964763">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Cheltenham - Highett (West)" x="145.03796368847347" y="-37.9574461622106">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hampton" x="145.01424689248017" y="-37.93766100345249">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Sandringham - Black Rock" x="145.0171050935253" y="-37.96085209264993">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bentleigh - McKinnon" x="145.037971511676" y="-37.91947713346292">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Carnegie" x="145.05589767104073" y="-37.89339061038834">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Caulfield - North" x="145.02290387801168" y="-37.873880185522125">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Caulfield - South" x="145.02536188704153" y="-37.89138033423501">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Elsternwick" x="145.00719950455357" y="-37.88696241468364">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hughesdale" x="145.0811358501394" y="-37.89948032735521">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Murrumbeena" x="145.070367927338" y="-37.89683768391193">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ormond - Glen Huntly" x="145.0414225134383" y="-37.9003672054821">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bentleigh East (North)" x="145.06804930782937" y="-37.914823401778506">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bentleigh East (South)" x="145.06532644485955" y="-37.92941328049847">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Aspendale Gardens - Waterways" x="145.12307561504767" y="-38.0190994791576">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Braeside" x="145.12223237202636" y="-37.99802032367893">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Carrum - Patterson Lakes" x="145.13919378456555" y="-38.07130655745164">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Chelsea - Bonbeach" x="145.12461206269663" y="-38.0565967037748">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Chelsea Heights" x="145.1342377160978" y="-38.04084320754794">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Cheltenham - Highett (East)" x="145.066079645959" y="-37.961179201259085">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Edithvale - Aspendale" x="145.10747812421607" y="-38.028230370535134">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mentone" x="145.069048525669" y="-37.98164451817991">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Moorabbin - Heatherton" x="145.0793240975291" y="-37.9503446629758">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Moorabbin Airport" x="145.0995180710022" y="-37.97745651480625">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mordialloc - Parkdale" x="145.08944363971227" y="-37.99600467767368">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Malvern - Glen Iris" x="145.04226915229958" y="-37.8564169296975">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Malvern East" x="145.06584794912362" y="-37.87683624449704">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bundoora - East" x="145.06833163199929" y="-37.69881483393738">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Greensborough" x="145.11389554784137" y="-37.70010163877959">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Heidelberg - Rosanna" x="145.06965451044732" y="-37.7457130244365">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Heidelberg West" x="145.04640617670373" y="-37.74299227757149">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ivanhoe" x="145.04307852685258" y="-37.76903343074821">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ivanhoe East - Eaglemont" x="145.06279353669242" y="-37.76857067649547">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Montmorency - Briar Hill" x="145.11968880329573" y="-37.72885766085233">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Viewbank - Yallambie" x="145.08824080996544" y="-37.73122352894268">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Watsonia" x="145.08414686218805" y="-37.70490627580392">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Kingsbury" x="145.04904304380148" y="-37.71456162751707">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Reservoir - East" x="145.02158545840223" y="-37.71499157450154">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Reservoir - West" x="144.99395484254205" y="-37.70985485201976">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Preston - East" x="145.01600099674863" y="-37.7427598720704">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Preston - West" x="144.99006469283142" y="-37.73994026183357">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Eltham" x="145.15681943366997" y="-37.714709255727534">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hurstbridge" x="145.19433689573123" y="-37.63758022424793">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Panton Hill - St Andrews" x="145.26476013327363" y="-37.595865254777664">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Plenty - Yarrambat" x="145.12384442028383" y="-37.653522040309895">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Research - North Warrandyte" x="145.22061632608268" y="-37.69900632658067">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Wattle Glen - Diamond Creek" x="145.16730285864003" y="-37.66774141003799">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bundoora - North" x="145.07119494748895" y="-37.68282438343852">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bundoora - West" x="145.05257870684193" y="-37.692916564647696">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Lalor" x="145.00391513817317" y="-37.6629003369809">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mill Park - North" x="145.06771139296643" y="-37.65952017031958">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mill Park - South" x="145.0592313499469" y="-37.67140186390486">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Thomastown" x="145.00827516746503" y="-37.68385461349959">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Whittlesea" x="145.1019565548512" y="-37.49792775835931">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Doreen" x="145.12483688961083" y="-37.596268876807194">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Epping - East" x="145.04538884921612" y="-37.635788799013824">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Epping - South" x="144.99651424473663" y="-37.639213708745615">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Epping - West" x="145.01004976818228" y="-37.63194148131424">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mernda" x="145.0819081078729" y="-37.59209594786967">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="South Morang (North)" x="145.08253805059064" y="-37.6237126171435">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="South Morang (South)" x="145.0855841308031" y="-37.645727300474505">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Wollert" x="145.00506226930838" y="-37.590934882638685">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Airport West" x="144.8812993634749" y="-37.72382150775633">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Essendon Airport" x="144.90040898208895" y="-37.7269074153449">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Keilor" x="144.8444575998384" y="-37.718945887242846">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Keilor East" x="144.86437159097625" y="-37.751804151540334">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Niddrie - Essendon West" x="144.88489281695" y="-37.74499689788848">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Strathmore" x="144.91367394089968" y="-37.72992923184853">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Coburg North" x="144.96745570871403" y="-37.72699082386737">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Fawkner" x="144.9696062350398" y="-37.7052348593013">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Pascoe Vale" x="144.93181968053386" y="-37.72287596235572">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Glenroy" x="144.92749827082855" y="-37.70287575591135">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Gowanbrae" x="144.89755107782003" y="-37.70280154565478">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hadfield" x="144.95029838516243" y="-37.710108404179486">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Sunbury" x="144.76757683250491" y="-37.53943898192341">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Sunbury - South" x="144.69700309611608" y="-37.59282293013405">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Broadmeadows" x="144.92932216608517" y="-37.68408254127621">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Campbellfield - Coolaroo" x="144.95184403377516" y="-37.66391988489471">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Gladstone Park - Westmeadows" x="144.89079816480353" y="-37.67627140410195">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Greenvale - Bulla" x="144.83536068125045" y="-37.62363168625325">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Meadow Heights" x="144.91855463448883" y="-37.65116522209729">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Melbourne Airport" x="144.8365185161167" y="-37.67642234181756">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Roxburgh Park - Somerton" x="144.9365233848464" y="-37.62968883876886">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Tullamarine" x="144.87723184047707" y="-37.6961405541432">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Craigieburn - Central" x="144.9356031535627" y="-37.59216066218477">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Craigieburn - North" x="144.9432534631768" y="-37.570665715050666">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Craigieburn - South" x="144.91880097588444" y="-37.60444473673516">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Craigieburn - West" x="144.9043840934512" y="-37.58053672868704">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mickleham - Yuroke" x="144.90192861781156" y="-37.54349953157805">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bayswater" x="145.2647651505913" y="-37.84544241283703">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Knoxfield - Scoresby" x="145.2304639402587" y="-37.897219585515415">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Lysterfield" x="145.29080839199375" y="-37.92696773067621">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Rowville - Central" x="145.24316945420696" y="-37.919383122832805">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Rowville - North" x="145.2608600703361" y="-37.90714119501013">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Rowville - South" x="145.23884360364943" y="-37.9355187787686">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Wantirna" x="145.2259751361437" y="-37.85232340550073">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Wantirna South" x="145.22091510514804" y="-37.87365116956579">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Boronia" x="145.2859645939909" y="-37.85629093018224">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ferntree Gully (North)" x="145.28555877132032" y="-37.877304635700334">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ferntree Gully (South) - Upper Ferntree Gully" x="145.28381224563873" y="-37.892824167900976">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="The Basin" x="145.32137263503907" y="-37.85568715953474">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Donvale - Park Orchards" x="145.2030524028462" y="-37.78456990437752">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Warrandyte - Wonga Park" x="145.242878210561" y="-37.743091705717575">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bayswater North" x="145.2928910033172" y="-37.82847941839043">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Croydon Hills - Warranwood" x="145.2687236667639" y="-37.77295280572736">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ringwood" x="145.2333679842451" y="-37.811423240689976">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ringwood East" x="145.2486768448606" y="-37.82149006911135">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ringwood North" x="145.23068653055896" y="-37.79465042497708">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Croydon - East" x="145.29122593732723" y="-37.80101969710131">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Croydon - West" x="145.27843551478725" y="-37.78887631968638">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Croydon South" x="145.27932305571449" y="-37.815085554354816">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Forest Hill" x="145.1710479674898" y="-37.83986963337685">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mitcham (Vic.)" x="145.1990075031938" y="-37.818177249980074">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Nunawading" x="145.17653069333687" y="-37.81736214224901">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Vermont" x="145.19929118084335" y="-37.838432324292285">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Vermont South" x="145.18781668319343" y="-37.85438684597614">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Belgrave - Selby" x="145.35514846772764" y="-37.93873061752396">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Chirnside Park" x="145.31431467558184" y="-37.73860224689611">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Healesville - Yarra Glen" x="145.4961837905496" y="-37.626135026510205">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Kilsyth" x="145.32033955772442" y="-37.8154273659801">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Lilydale - Coldstream" x="145.3888265692908" y="-37.71379876500095">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Monbulk - Silvan" x="145.458728262999" y="-37.864082097011135">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Montrose" x="145.347947306523" y="-37.81113579308232">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mooroolbark" x="145.32567180091291" y="-37.78133841453615">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mount Dandenong - Olinda" x="145.37567996665723" y="-37.86184098737164">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mount Evelyn" x="145.38821104720216" y="-37.7872915559605">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Upwey - Tecoma" x="145.33073106568622" y="-37.90424925589838">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Wandin - Seville" x="145.46397080061206" y="-37.76064402859902">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Yarra Valley" x="145.68025115256876" y="-37.76795769319296">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Beaconsfield - Officer" x="145.40275845903568" y="-38.04678165854665">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Bunyip - Garfield" x="145.64484934202355" y="-38.07969877627744">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Emerald - Cockatoo" x="145.56163880258873" y="-37.953148294957835">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Koo Wee Rup" x="145.55327117932154" y="-38.209021292798354">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Pakenham - North" x="145.47763363298589" y="-38.045424032992685">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Pakenham - South" x="145.48965868210257" y="-38.09427201034497">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Berwick - North" x="145.34883673332865" y="-38.02513739067797">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Berwick - South" x="145.34790537203537" y="-38.06117737003956">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Doveton" x="145.2402005313295" y="-37.99060255806154">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hallam" x="145.26849494218789" y="-38.00774946116866">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Narre Warren North" x="145.33040367918647" y="-37.986309360988166">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Endeavour Hills - North" x="145.2580270539055" y="-37.95946957835832">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Endeavour Hills - South" x="145.26079699008903" y="-37.983377012638975">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Narre Warren - North East" x="145.30942384303603" y="-38.005055098613866">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Narre Warren - South West" x="145.30407952644907" y="-38.02480324397448">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Cranbourne" x="145.2757092829571" y="-38.106896087984005">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Cranbourne East" x="145.34222251825463" y="-38.10444281748198">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Cranbourne North" x="145.29884217072967" y="-38.07749379240454">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Cranbourne South" x="145.3129213388488" y="-38.15144750839573">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Cranbourne West" x="145.24840254174399" y="-38.1018479694082">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hampton Park - Lynbrook" x="145.2685981591777" y="-38.03860875648888">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Lynbrook - Lyndhurst" x="145.25315217803063" y="-38.0620375877644">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Pearcedale - Tooradin" x="145.31156573047417" y="-38.204453438275486">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Narre Warren South (East)" x="145.3125717642756" y="-38.05902878085351">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Narre Warren South (West)" x="145.2920462476363" y="-38.05009763249967">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Clarinda - Oakleigh South" x="145.0990501114735" y="-37.93856382745861">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Clayton South" x="145.125214327879" y="-37.943061155348005">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Dandenong" x="145.20974918647585" y="-38.03039547756919">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Dandenong North" x="145.21424110854036" y="-37.9559149063478">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Dingley Village" x="145.12713202422356" y="-37.97490401850558">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Keysborough" x="145.16391590029866" y="-38.014537058338526">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Noble Park North" x="145.190828566685" y="-37.951250121096166">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Springvale" x="145.15785564422265" y="-37.945695532223">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Springvale South" x="145.14786182636223" y="-37.970844571419775">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Noble Park - East" x="145.18174585828478" y="-37.96392314433757">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Noble Park - West" x="145.1727402002001" y="-37.97393950100712">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ashwood - Chadstone" x="145.10145233825483" y="-37.87242722373736">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Clayton" x="145.1321795600387" y="-37.9159414425435">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Glen Waverley - East" x="145.17831771818817" y="-37.881523765509314">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Glen Waverley - West" x="145.1560700268103" y="-37.88170195807885">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mount Waverley - North" x="145.1302340071937" y="-37.86646037484638">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mount Waverley - South" x="145.12720266237307" y="-37.88726379548774">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mulgrave" x="145.1758710981727" y="-37.925682220857766">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Oakleigh - Huntingdale" x="145.10120714979018" y="-37.9084821974954">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Wheelers Hill" x="145.18686584887985" y="-37.907586086029035">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Ardeer - Albion" x="144.8096005104553" y="-37.77615023014897">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Cairnlea" x="144.787807670088" y="-37.7593152344105">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Deer Park - Derrimut" x="144.77423424741266" y="-37.78739066484724">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Delahey" x="144.77731988970115" y="-37.719803152493455">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Keilor Downs" x="144.8129093815628" y="-37.72628842906772">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Kings Park (Vic.)" x="144.7705066888327" y="-37.7390304240148">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="St Albans - North" x="144.80238919950204" y="-37.73716444318444">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="St Albans - South" x="144.8076335303632" y="-37.7533556340552">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Sunshine" x="144.83425161032355" y="-37.7893218474253">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Sunshine North" x="144.8361887176353" y="-37.76392911083975">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Sunshine West" x="144.81827516316832" y="-37.80200809789534">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Sydenham" x="144.76424277858143" y="-37.69979653208424">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Taylors Lakes" x="144.78597248204449" y="-37.68851135611413">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Altona" x="144.8150071788383" y="-37.860307069515606">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Altona Meadows" x="144.78443391919006" y="-37.880991410924814">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Altona North" x="144.83608911052409" y="-37.83572385946849">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Newport" x="144.88222164881003" y="-37.837628075874925">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Seabrook" x="144.75865594721427" y="-37.880920776372704">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Williamstown" x="144.88479023937816" y="-37.85912814464814">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Braybrook" x="144.8629915651087" y="-37.78468804381811">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Footscray" x="144.89731910489283" y="-37.79812936058147">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Maribyrnong" x="144.88776225052754" y="-37.772689484232274">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Seddon - Kingsville" x="144.88634169940997" y="-37.80766720237944">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="West Footscray - Tottenham" x="144.86450664126855" y="-37.802027864094605">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Yarraville" x="144.8819717353074" y="-37.81797615257733">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hillside" x="144.69672135290818" y="-37.687358039441904">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Melton" x="144.5937774430746" y="-37.62149833877726">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Melton South" x="144.54763432246602" y="-37.74013825387726">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Melton West" x="144.5426040905064" y="-37.66487156187304">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Rockbank - Mount Cottrell" x="144.66723883060763" y="-37.76039830953431">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Taylors Hill" x="144.7490098225453" y="-37.71455737642174">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Burnside" x="144.75302683961706" y="-37.74921288906353">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Burnside Heights" x="144.75563132302716" y="-37.73223125077158">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Caroline Springs" x="144.73736484041513" y="-37.73892602261782">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hoppers Crossing - North" x="144.7012568534211" y="-37.86244356641743">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hoppers Crossing - South" x="144.68536150892655" y="-37.87327847791937">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Laverton" x="144.77803899840114" y="-37.83953850839538">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Tarneit" x="144.6465922283487" y="-37.82662286875034">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Truganina" x="144.73445380779708" y="-37.83282616379637">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Werribee - South" x="144.6528752779718" y="-37.951359350953226">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Wyndham Vale" x="144.54100611753836" y="-37.84149602851886">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Point Cook - East" x="144.77010617665883" y="-37.91313370335769">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Point Cook - North" x="144.73755394355976" y="-37.88607630367841">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Point Cook - South" x="144.73344684409665" y="-37.91133746854928">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Werribee - East" x="144.6619507279438" y="-37.8851775185276">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Werribee - West" x="144.54847999815343" y="-37.91965844937789">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Carrum Downs" x="145.17579428078147" y="-38.092777830832176">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Frankston" x="145.139648989909" y="-38.15411131108812">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Frankston North" x="145.15804088208108" y="-38.133608142601645">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Frankston South" x="145.1294653242653" y="-38.176449287204775">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Langwarrin" x="145.19592749335925" y="-38.16262232226234">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Seaford (Vic.)" x="145.13844663950087" y="-38.104820710807125">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Skye - Sandhurst" x="145.21507881083846" y="-38.10137517782215">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Dromana" x="144.9991176264773" y="-38.33585567030292">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Flinders" x="145.00004661445973" y="-38.398036070907885">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Hastings - Somers" x="145.1646508424625" y="-38.34579074534656">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mornington" x="145.0602800583781" y="-38.23043462735615">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mount Eliza" x="145.09289068086025" y="-38.19507440775766">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Mount Martha" x="145.03073141342406" y="-38.27546518497024">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Point Nepean" x="144.79664440491547" y="-38.378609151690966">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Rosebud - McCrae" x="144.9074476214107" y="-38.36895789549044">
+    <activity type="SA1ZONE"/>
+  </facility>
+  <facility id="Somerville" x="145.16389362589018" y="-38.24114385590417">
+    <activity type="SA1ZONE"/>
+  </facility>
+</facilities>

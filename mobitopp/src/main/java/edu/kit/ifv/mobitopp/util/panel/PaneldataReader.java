@@ -324,11 +324,11 @@ public class PaneldataReader {
 
             PaneldataInfo info = infos.get(id).get(0);
 
-            int minors = info.household.additionalchildren;
+            int minors = 0;
 
             for (PaneldataInfo pinfo : infos.get(id)) {
 
-                if (pinfo.person.age < 18 && pinfo.person.age > 10) {
+                if (pinfo.person.age < 18 && pinfo.person.age >= 10) {
                     minors++;
                 }
 

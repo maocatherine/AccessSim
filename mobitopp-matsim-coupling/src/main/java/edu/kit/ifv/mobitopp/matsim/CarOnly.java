@@ -7,7 +7,7 @@ public class CarOnly implements ActivityFilter {
 
 	@Override
 	public boolean isAllowed(ActivityIfc current) {
-		return current.isLocationSet() && current.mode() == StandardMode.CAR;
+		return current.isLocationSet() && (current.mode() == StandardMode.CAR || current.mode() == StandardMode.PASSENGER);
 	}
 
 }

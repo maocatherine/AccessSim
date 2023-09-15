@@ -1,9 +1,9 @@
-wrapper.gradleVersion = '6.3'
+wrapper.gradleVersion = '7.4'
 
 subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
-    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
     apply plugin: 'jacoco'
   
     group = 'edu.kit.ifv.mobitopp'
@@ -25,9 +25,8 @@ subprojects {
     ]
     
     ext.libraries = [
-        actitopp: 'edu.kit.ifv.mobitopp:actitopp:0.1',
         commons_compress: 'org.apache.commons:commons-compress:1.12',
-        lombok: 'org.projectlombok:lombok:1.18.8',
+        lombok: 'org.projectlombok:lombok:1.18.20',
         opencsv: 'net.sf.opencsv:opencsv:2.3',
         snakeyaml: 'org.yaml:snakeyaml:1.18',
 
@@ -44,7 +43,7 @@ subprojects {
         rhino: 'org.mozilla:rhino:1.7.13',
         gson: 'com.google.code.gson:gson:2.8.6',
         
-        slf4j: 'org.slf4j:slf4j-api:1.7.32',
+        slf4j: 'org.slf4j:slf4j-api:1.7.36',
         log4j: 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
     ]
     

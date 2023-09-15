@@ -16,47 +16,47 @@ import edu.kit.ifv.mobitopp.util.panel.PersonOfPanelDataId;
 
 public class DefaultActivityScheduleAssigner implements ActivityScheduleAssigner {
 
-  private final ActivityScheduleCreator scheduleCreator;
-  private final Map<PersonOfPanelDataId, TourBasedActivityPattern> cachedActivityPattern = new LinkedHashMap<>();
-  private final PanelDataRepository panelDataRepository;
+    private final ActivityScheduleCreator scheduleCreator;
+    private final Map<PersonOfPanelDataId, TourBasedActivityPattern> cachedActivityPattern = new LinkedHashMap<>();
+    private final PanelDataRepository panelDataRepository;
 
-  public DefaultActivityScheduleAssigner(ActivityScheduleCreator scheduleCreator, PanelDataRepository panelDataRepository) {
-    super();
-    this.scheduleCreator = scheduleCreator;
-    this.panelDataRepository = panelDataRepository;
-  }
-
-  @Override
-  public void assignActivitySchedule(HouseholdForSetup toHousehold) {
-    for (PersonBuilder personInHH : toHousehold.getPersons()) {
-      doAssign(toHousehold, personInHH);
+    public DefaultActivityScheduleAssigner(ActivityScheduleCreator scheduleCreator, PanelDataRepository panelDataRepository) {
+        super();
+        this.scheduleCreator = scheduleCreator;
+        this.panelDataRepository = panelDataRepository;
     }
-  }
 
-  private void doAssign(HouseholdForSetup household, PersonBuilder person) {
-    HouseholdOfPanelDataId householdId = createPanelId(household.getId());
-    PersonOfPanelDataId personId = createPanelId(person.getId());
-    HouseholdOfPanelData panelHousehold = panelDataRepository.getHousehold(householdId);
-    PersonOfPanelData panelPerson = panelDataRepository.getPerson(personId);
-    PatternActivityWeek activityPattern = this.scheduleCreator
-        .createActivitySchedule(panelPerson, panelHousehold, household);
-
-    TourBasedActivityPattern activitySchedule;
-    if (cachedActivityPattern.containsKey(panelPerson.getId())) {
-      activitySchedule = cachedActivityPattern.get(panelPerson.getId());
-    } else {
-      activitySchedule = TourBasedActivityPatternCreator.fromPatternActivityWeek(activityPattern);
-      cachedActivityPattern.put(panelPerson.getId(), activitySchedule);
+    @Override
+    public void assignActivitySchedule(HouseholdForSetup toHousehold) {
+        for (PersonBuilder personInHH : toHousehold.getPersons()) {
+            doAssign(toHousehold, personInHH);
+        }
     }
-    person.setPatternActivityWeek(activitySchedule);
-  }
 
-  private PersonOfPanelDataId createPanelId(PersonId id) {
-    return new PersonOfPanelDataId(createPanelId(id.getHouseholdId()), id.getPersonNumber());
-  }
+    private void doAssign(HouseholdForSetup household, PersonBuilder person) {
+        HouseholdOfPanelDataId householdId = createPanelId(household.getId());
+        PersonOfPanelDataId personId = createPanelId(person.getId());
+        HouseholdOfPanelData panelHousehold = panelDataRepository.getHousehold(householdId);
+        PersonOfPanelData panelPerson = panelDataRepository.getPerson(personId);
+        PatternActivityWeek activityPattern = this.scheduleCreator
+                .createActivitySchedule(panelPerson, panelHousehold, household);
 
-  private HouseholdOfPanelDataId createPanelId(HouseholdId id) {
-    return new HouseholdOfPanelDataId(id.getYear(), id.getHouseholdNumber());
-  }
+        TourBasedActivityPattern activitySchedule;
+        if (cachedActivityPattern.containsKey(panelPerson.getId())) {
+            activitySchedule = cachedActivityPattern.get(panelPerson.getId());
+        } else {
+            activitySchedule = TourBasedActivityPatternCreator.fromPatternActivityWeek(activityPattern);
+            cachedActivityPattern.put(panelPerson.getId(), activitySchedule);
+        }
+        person.setPatternActivityWeek(activitySchedule);
+    }
+
+    private PersonOfPanelDataId createPanelId(PersonId id) {
+        return new PersonOfPanelDataId(createPanelId(id.getHouseholdId()), id.getPersonNumber());
+    }
+
+    private HouseholdOfPanelDataId createPanelId(HouseholdId id) {
+        return new HouseholdOfPanelDataId(id.getYear(), id.getHouseholdNumber());
+    }
 
 }

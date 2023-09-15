@@ -12,9 +12,9 @@ import edu.kit.ifv.mobitopp.visum.VisumTransportSystem;
 
 public class MatsimConnectorCreator extends BaseLinkCreator {
 
-	public static final int   CONNECTOR_LANES = 4;
+	public static final int   CONNECTOR_LANES = 1;
 	public static final float CONNECTOR_FREESPEED = 50.0f;	// km/h
-	public static final float CONNECTOR_CAPACITY = 100000;
+	public static final float CONNECTOR_CAPACITY = 1000;
 
 	private final VisumRoadNetwork visum;
 
@@ -41,7 +41,7 @@ public class MatsimConnectorCreator extends BaseLinkCreator {
 					} else {
 						makeLink(connector.id,  
 											matsimNode,
-											zones.get("Z" + connector.zone.id + ":2"),
+											zones.get("Z" + connector.zone.id + ":1"), //Identical
 											linkLengthFor(connector),
 											CONNECTOR_CAPACITY,
 											CONNECTOR_FREESPEED,

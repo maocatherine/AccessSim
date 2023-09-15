@@ -337,7 +337,7 @@ public class LocalFiles implements DataSource {
         Matrices matrices = matrices(modeToType);
         ZoneRepository zoneRepository = loadZonesFromMobiTopp(network, areaTypeRepository, matrices);
         initialiseResultWriting(zoneRepository, results, electricChargingWriter);
-        addOpportunities(zoneRepository, numberOfZones, personChanger);
+        addOpportunities(zoneRepository, numberOfZones, personChanger); //here read from the opportunity data from populationsynthesis.
         ImpedanceIfc localImpedance = impedance(input, matrices, zoneRepository, wrapImpedance);
         ImpedanceIfc impedance = data.impedance(localImpedance, zoneRepository);//impedance equals to localImpedance here
         VehicleBehaviour vehicleBehaviour = data.vehicleBehaviour(results);

@@ -139,7 +139,7 @@ public class DemandDataForZoneCalculatorStuttgart implements DemandDataForZoneCa
     void calculateDemandDataInternal(DemandZone zone) {
         log.info("Demand data Zone " + zone.getId());
 
-        //NominalHouseholdDistribution means from the demography how many households supposed to locate in this zone.
+        //NominalHouseholdDistribution means from the demography how many households are supposed to locate in this zone.
         //Then reweigh iteratively to determine the exact number and location of households.
         if (getNominalHouseholdDistribution(zone).getTotalAmount() > 0) {
 

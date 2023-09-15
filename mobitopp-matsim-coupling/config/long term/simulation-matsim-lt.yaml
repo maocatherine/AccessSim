@@ -1,0 +1,32 @@
+dataSource: !file
+  demandDataFolder: output/long_term/demand-data
+  matrixConfigurationFile: data_longterm/matrices/matrix-configuration.yaml
+  attractivityDataFile: data_longterm/zone_properties/attractivities.csv
+  zonePropertiesDataFile: data_longterm/zone_properties/zone-properties.csv
+  parkingFacilitiesDataFile: data_longterm/zone_properties/parking-facilities.csv
+
+  bikeSharingPropertiesDataFile: data_longterm/zone_properties/bikesharing-properties.csv
+  carSharingPropertiesDataFile: data_longterm/zone_properties/carsharing-properties.csv
+  carSharingStationsDataFile: data_longterm/zone_properties/carsharing-stations.csv
+  carSharingFreeFloatingDataFile: data_longterm/zone_properties/carsharing-free-floating.csv
+  defaultChargingPower: data_longterm/parameters/ChargingPower.txt
+  zoneRepositoryFolder: output/long_term/zone-repository/
+days: 7
+modeChoice:
+  firstTrip: data_longterm/parameters/ModeSelectorParameterFirstTrip.txt
+  otherTrip: data_longterm/parameters/ModeSelectorParameterOtherTrip.txt
+destinationChoice:
+  repetition: data_longterm/parameters/TargetParameterRepetition.csv
+  cost: data_longterm/parameters/TargetParameterCost.txt
+fractionOfPopulation: 0.001
+#numberOfZones: 6
+resultFolder: results/long_term/simulation
+seed: 1234
+visumFile: data_longterm/metro_mel_map/metro_mel_30lga_21sa2.net
+experimental:
+  iterations: 1
+  matsimConfig: config/long term/matsim-accessibility-config.xml
+  facilities: facility-point-opportunity.xml
+  externalTraffic: data_longterm/external_demand/external-demand.mtx
+  travelTimeMatrixFolderName: travelTime
+  householdAfterLocationChoice: data_longterm/residential_location_choice/LCM_results.csv

@@ -584,6 +584,14 @@ public class ModeSelectorParameterFirstTrip
             double cost_km = (mode == StandardMode.PUBLICTRANSPORT && person.hasCommuterTicket()) ? 0.0
                     : impedance.getTravelCost(originId, destinationId, mode, date); // / distance;
 
+            //This is to model a reduced VoT distuility.
+            if (mode == StandardMode.CAR || mode == StandardMode.PASSENGER) {
+//                cost_km = cost_km * 0.85f;
+                if (mode == StandardMode.CAR) {
+                    time = time * 0.85f;
+                }
+            }
+
             attrib.put("TIME", time);
             attrib.put("COST_KM", cost_km);
 

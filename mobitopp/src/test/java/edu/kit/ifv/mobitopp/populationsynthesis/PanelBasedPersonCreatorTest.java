@@ -60,7 +60,7 @@ public class PanelBasedPersonCreatorTest {
         () -> assertThat(person.hasAccessToCar(), is(equalTo(panelPerson.hasAccessToCar()))),
         () -> assertThat(person.hasPersonalCar(), is(equalTo(panelPerson.hasPersonalCar()))),
         () -> assertThat(person.hasCommuterTicket(), is(equalTo(panelPerson.hasCommuterTicket()))),
-        () -> assertThat(person.hasDrivingLicense(), is(equalTo(panelPerson.hasLicence()))));
+        () -> assertThat(person.hasDrivingLicense(), is(equalTo(panelPerson.hasLicense()))));
 
     verify(commutationTicketModel).estimateCommutationTicket(panelPerson, panelHousehold, zone);
   }

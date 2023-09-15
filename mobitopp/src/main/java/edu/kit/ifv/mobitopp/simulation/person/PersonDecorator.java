@@ -266,6 +266,10 @@ public class PersonDecorator implements Person, Serializable {
 		return person().attributes();
 	}
 
+	@Override
+	public void setTourPattern(TourBasedActivityPattern tourPattern) {
+	}
+
 	public String toString() {
 
 		return "Person: oid=" + getOid() + " " + isCarDriver() + " " + currentTrip()

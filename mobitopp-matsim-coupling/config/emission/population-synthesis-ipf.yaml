@@ -1,0 +1,35 @@
+activityScheduleAssigner: standard
+carOwnership:
+  engine: data_emission/parameters/SociodemographicCoefficients.txt
+  ownership: data_emission/parameters/CarOwnershipModelParameter.txt
+  segment: data_emission/parameters/LogitBasedCarSegmentModelParameter.txt
+#mobilityProviders:
+commuterTicket: data_emission/parameters/TransitPassParameter.txt
+dataSource: !file
+  demandDataFolder: output/emission/demand-data
+  matrixConfigurationFile: data_emission/matrices/matrix-configuration.yaml
+  attractivityDataFile: data_emission/zone_properties/attractivities.csv
+  zonePropertiesDataFile: data_emission/zone_properties/zone-properties.csv
+  parkingFacilitiesDataFile: data_emission/zone_properties/parking-facilities.csv
+  bikeSharingPropertiesDataFile: data_emission/zone_properties/bikesharing-properties.csv
+  carSharingPropertiesDataFile: data_emission/zone_properties/carsharing-properties.csv
+  carSharingStationsDataFile: data_emission/zone_properties/carsharing-stations.csv
+  carSharingFreeFloatingDataFile: data_emission/zone_properties/carsharing-free-floating.csv
+  #charging: unlimited
+  defaultChargingPower: data_emission/parameters/ChargingPower.txt
+  zoneRepositoryFolder: output/emission/zone-repository/
+demographyData:
+  age_f: data_emission/zone_properties/demography-ipf.csv
+  age_m: data_emission/zone_properties/demography-ipf.csv
+  dom_code: data_emission/zone_properties/demography-ipf.csv
+  job: data_emission/zone_properties/demography-ipf.csv
+#numberOfZones: 2147483647
+panelData: data_emission/study_map/population_study_area.csv
+resultFolder: results/emission/population-synthesis
+seed: 77859
+synthesisZoneProperties: data_emission/zone_properties/synthesis-zone-properties.csv
+visumFile: data_emission/study_map/mel_emission_area.net
+pois: data_emission/zone_properties/opportunity_poi.csv
+#experimental:
+#  parameter1: 1
+#  parameter2: 2

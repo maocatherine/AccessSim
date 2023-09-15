@@ -9,6 +9,8 @@ import org.matsim.api.core.v01.network.Network;
 import org.matsim.api.core.v01.population.Population;
 import org.matsim.contrib.accessibility.AccessibilityModule;
 import org.matsim.contrib.accessibility.AccessibilityUtils;
+import org.matsim.contrib.emissions.EmissionModule;
+import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
 
 import java.util.*;
@@ -32,7 +34,7 @@ public class Matsim {
     public void createPersons() {
         System.out.println("Create demand for matsim");
         createInternalDemand();
-        //createExternalDemand();
+        createExternalDemand();
     }
 
     private void createInternalDemand() {
@@ -74,7 +76,7 @@ public class Matsim {
         List<String> activityTypes = AccessibilityUtils.collectAllFacilityOptionTypes(scenario);
         System.out.println("The following activity types were found: " + activityTypes);
 
-//        //version 1 with accessiblity module
+        //version 1 with accessiblity module
 //        Controler controler = new Controler(scenario);
 //        for (final String actType : activityTypes) { // Add an overriding module for each activity type.
 //            final AccessibilityModule module = new AccessibilityModule();
@@ -84,8 +86,17 @@ public class Matsim {
 //        controler.run();
 //        return controler;
 
-        //version 2 only core model
-        //controler.addOverridingModule( new OTFVisLiveModule() ) ;
+        //version 2 with emission module
+//        Controler controler = new Controler(scenario);
+//        controler.addOverridingModule(new AbstractModule() {
+//            @Override
+//            public void install() {
+//                bind(EmissionModule.class).asEagerSingleton();
+//            }
+//        });
+//        controler.run();
+
+        //version 3 only core model
         Controler controler = new Controler(scenario);
         controler.run();
         return controler;
