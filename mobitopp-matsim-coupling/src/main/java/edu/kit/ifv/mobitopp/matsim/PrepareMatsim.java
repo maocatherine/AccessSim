@@ -63,10 +63,10 @@ public class PrepareMatsim {
 	private Config fromConfig() {
 		float fractionOfPopulation = context.fractionOfPopulation();
 		String matsimConfig = context.experimentalParameters().value("matsimConfig");
-//		String facilityConfig = context.experimentalParameters().value("facilities");
+		String facilityConfig = context.experimentalParameters().value("facilities");
 
 		Config config = ConfigUtils.loadConfig(matsimConfig);
-//		config.facilities().setInputFile(facilityConfig);
+		config.facilities().setInputFile(facilityConfig);
 
 		config
 				.controler()
@@ -74,8 +74,8 @@ public class PrepareMatsim {
 						OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
 
 		//use this for accessibility
-//		AccessibilityConfigGroup accConfig = ConfigUtils.addOrGetModule(config, AccessibilityConfigGroup.class);
-//		accConfig.setComputingAccessibilityForMode(Modes4Accessibility.freespeed, true);
+		AccessibilityConfigGroup accConfig = ConfigUtils.addOrGetModule(config, AccessibilityConfigGroup.class);
+		accConfig.setComputingAccessibilityForMode(Modes4Accessibility.freespeed, true);
 
 		//use this for emission
 // 		config.scenario().setSimulationPeriodInDays(7);

@@ -78,14 +78,14 @@ public class PopulationSynthesisMatsim extends BasicPopulationSynthesisIpf {
         PersonCreator personCreator = personCreator(context, commuterTicketModel);
 
         //Use this for LT.
-//        PanelDataRepository panelDataRepository = context.dataRepository().panelDataRepository();
-//        ActivityScheduleCreator scheduleCreator = new ActiToppScheduleCreator(context.seed());
-//        ActivityScheduleAssigner activityScheduleAssigner = new DefaultActivityAssigner(panelDataRepository, scheduleCreator);
+        PanelDataRepository panelDataRepository = context.dataRepository().panelDataRepository();
+        ActivityScheduleCreator scheduleCreator = new ActiToppScheduleCreator(context.seed());
+        ActivityScheduleAssigner activityScheduleAssigner = new DefaultActivityAssigner(panelDataRepository, scheduleCreator);
 
         //Use this for ST.
-        PanelDataRepository panelDataRepository = context.dataRepository().panelDataRepository();
-        ActivityScheduleCreator scheduleCreator = new DefaultActivityScheduleCreator();
-        ActivityScheduleAssigner activityScheduleAssigner = new DefaultActivityAssigner(panelDataRepository, scheduleCreator);
+//        PanelDataRepository panelDataRepository = context.dataRepository().panelDataRepository();
+//        ActivityScheduleCreator scheduleCreator = new DefaultActivityScheduleCreator();
+//        ActivityScheduleAssigner activityScheduleAssigner = new DefaultActivityAssigner(panelDataRepository, scheduleCreator);
 
         return populationSynthesis(householdLocationSelector, carOwnershipModel,
                 personCreator, activityScheduleAssigner, context);

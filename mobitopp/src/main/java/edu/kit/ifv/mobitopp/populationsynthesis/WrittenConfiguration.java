@@ -39,7 +39,7 @@ public class WrittenConfiguration {
         super();
         numberOfZones = unlimited;
         demandRegionMapping = Map.of(); //create an empty map.
-        activityScheduleAssigner = ActivityScheduleAssignerType.standard; //change to actiopp for LT
+        activityScheduleAssigner = ActivityScheduleAssignerType.actitopp; //change to actiopp for LT
         mobilityProviders = Map.of();
         resultFolder = defaultResultFolder;
         visumToMobitopp = new VisumToMobitopp();
